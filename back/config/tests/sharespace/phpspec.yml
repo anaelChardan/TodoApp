@@ -1,0 +1,7 @@
+suites:
+  sharespace:
+    namespace: Todo\ShareSpace
+    psr4_prefix: Todo\ShareSpace
+    spec_path: tests/ShareSpace
+    src_path: src/ShareSpace
+    spec_prefix: Specification

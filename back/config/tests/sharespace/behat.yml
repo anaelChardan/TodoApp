@@ -1,0 +1,13 @@
+default:
+  suites:
+    test_demo:
+      paths:
+        - '%paths.base%/../../../../features/demo'
+      contexts:
+        - 'Todo\Tests\ShareSpace\Behat\DemoContext'
+
+  extensions:
+    FriendsOfBehat\SymfonyExtension:
+      kernel:
+        class: 'Todo\ShareSpace\Application\Symfony\Kernel'
+        environment: 'in_memory'

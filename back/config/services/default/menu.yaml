@@ -1,0 +1,30 @@
+# This file is the entry point to configure your own services.
+# Files in the packages/ subdirectory configure your dependencies.
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+parameters:
+
+services:
+  # default configuration for services in *this* file
+  _defaults:
+    autowire: true      # Automatically injects dependencies in your services.
+    autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+
+  command_handlers:
+    namespace: Todo\
+    resource: '%kernel.project_dir%/src/**/Write/*Handler.php'
+    autoconfigure: false
+    tags:
+      - { name: messenger.message_handler, bus: command.bus }
+
+  query_handlers:
+    namespace: Todo\
+    resource: '%kernel.project_dir%/src/**/Read/**/*Handler.php'
+    autoconfigure: false
+    tags:
+      - { name: messenger.message_handler, bus: query.bus }
+
+  validators:
+    namespace: Todo\
+    resource: '%kernel.project_dir%/src/**/*Validator.php'
