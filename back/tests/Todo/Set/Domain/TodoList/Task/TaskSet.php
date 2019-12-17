@@ -1,0 +1,34 @@
+<?php
+/**
+ * Todo Project.
+ *
+ * @author    Anael Chardan <anael.chardan@gmail.com>
+ * @copyright 2019 Todo
+ * @license   Proprietary
+ */
+declare(strict_types=1);
+
+namespace Todo\Tests\Todo\Set\Domain\TodoList\Task;
+
+use Innmind\BlackBox\Set;
+use Innmind\BlackBox\Set\Composite;
+use Todo\Todo\Domain\TodoList\Write\Task\Identifier;
+use Todo\Todo\Domain\TodoList\Write\Task\Name;
+use Todo\Todo\Domain\TodoList\Write\Task\Task;
+
+final class TaskSet
+{
+    public static function one(): Task
+    {
+        return static::any()->take(1)->values()->current();
+    }
+
+    public static function any(): Set
+    {
+        return Composite::of(
+            static fn (Identifier $identifier, Name $name): Task => new Task($identifier, $name),
+            IdentifierSet::any(),
+            NameSet::any()
+        );
+    }
+}

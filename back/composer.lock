@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0ccabc6e88e9b5b26f3fe0a8a0de4adf",
+    "content-hash": "fb6ff27e13e524930e65ba36252e20e9",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -176,6 +176,53 @@
             "time": "2017-04-02T15:34:00+00:00"
         },
         {
+            "name": "php-ds/php-ds",
+            "version": "v1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-ds/polyfill.git",
+                "reference": "27bed3897f9c801604f5bdcb65b71eb61ec80099"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-ds/polyfill/zipball/27bed3897f9c801604f5bdcb65b71eb61ec80099",
+                "reference": "27bed3897f9c801604f5bdcb65b71eb61ec80099",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0.0"
+            },
+            "require-dev": {
+                "php-ds/tests": "^1.2"
+            },
+            "suggest": {
+                "ext-ds": "to improve performance and reduce memory usage"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Ds\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Rudi Theunissen",
+                    "email": "rudolf.theunissen@gmail.com"
+                }
+            ],
+            "keywords": [
+                "data structures",
+                "ds",
+                "php",
+                "polyfill"
+            ],
+            "time": "2017-08-03T02:03:34+00:00"
+        },
+        {
             "name": "psr/cache",
             "version": "1.0.1",
             "source": {
@@ -319,22 +366,22 @@
         },
         {
             "name": "ramsey/uuid",
-            "version": "3.9.1",
+            "version": "3.9.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ramsey/uuid.git",
-                "reference": "5ac2740e0c8c599d2bbe7f113a939f2b5b216c67"
+                "reference": "7779489a47d443f845271badbdcedfe4df8e06fb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ramsey/uuid/zipball/5ac2740e0c8c599d2bbe7f113a939f2b5b216c67",
-                "reference": "5ac2740e0c8c599d2bbe7f113a939f2b5b216c67",
+                "url": "https://api.github.com/repos/ramsey/uuid/zipball/7779489a47d443f845271badbdcedfe4df8e06fb",
+                "reference": "7779489a47d443f845271badbdcedfe4df8e06fb",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
                 "paragonie/random_compat": "^1 | ^2 | 9.99.99",
-                "php": "^5.4 | ^7",
+                "php": "^5.4 | ^7 | ^8",
                 "symfony/polyfill-ctype": "^1.8"
             },
             "replace": {
@@ -344,13 +391,13 @@
                 "codeception/aspect-mock": "^1 | ^2",
                 "doctrine/annotations": "^1.2",
                 "goaop/framework": "1.0.0-alpha.2 | ^1 | ^2.1",
-                "jakub-onderka/php-parallel-lint": "^0.9.0",
-                "mockery/mockery": "^0.9.9",
+                "jakub-onderka/php-parallel-lint": "^1",
+                "mockery/mockery": "^0.9.11 | ^1",
                 "moontoast/math": "^1.1",
                 "paragonie/random-lib": "^2",
                 "php-mock/php-mock-phpunit": "^0.3 | ^1.1",
                 "phpunit/phpunit": "^4.8 | ^5.4 | ^6.5",
-                "squizlabs/php_codesniffer": "^2.3"
+                "squizlabs/php_codesniffer": "^3.5"
             },
             "suggest": {
                 "ext-ctype": "Provides support for PHP Ctype functions",
@@ -402,7 +449,7 @@
                 "identifier",
                 "uuid"
             ],
-            "time": "2019-12-01T04:55:27+00:00"
+            "time": "2019-12-17T08:18:51+00:00"
         },
         {
             "name": "sensio/framework-extra-bundle",
@@ -1230,16 +1277,16 @@
         },
         {
             "name": "symfony/flex",
-            "version": "v1.5.3",
+            "version": "v1.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/flex.git",
-                "reference": "59b42aa1d3385a21683601c15e63eb35d2ebe8a4"
+                "reference": "952f45d1c5077e658cb16a61d11603bee873f968"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/flex/zipball/59b42aa1d3385a21683601c15e63eb35d2ebe8a4",
-                "reference": "59b42aa1d3385a21683601c15e63eb35d2ebe8a4",
+                "url": "https://api.github.com/repos/symfony/flex/zipball/952f45d1c5077e658cb16a61d11603bee873f968",
+                "reference": "952f45d1c5077e658cb16a61d11603bee873f968",
                 "shasum": ""
             },
             "require": {
@@ -1275,7 +1322,7 @@
                 }
             ],
             "description": "Composer plugin for Symfony",
-            "time": "2019-12-01T15:56:52+00:00"
+            "time": "2019-12-13T18:05:11+00:00"
         },
         {
             "name": "symfony/framework-bundle",
@@ -3996,16 +4043,16 @@
         },
         {
             "name": "ocramius/proxy-manager",
-            "version": "2.5.0",
+            "version": "2.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Ocramius/ProxyManager.git",
-                "reference": "8eb0084cef8e4982c937b8dd1bdfd488a80cc64f"
+                "reference": "b7bac968eef945322d1e28d7e833b6a549a6da27"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Ocramius/ProxyManager/zipball/8eb0084cef8e4982c937b8dd1bdfd488a80cc64f",
-                "reference": "8eb0084cef8e4982c937b8dd1bdfd488a80cc64f",
+                "url": "https://api.github.com/repos/Ocramius/ProxyManager/zipball/b7bac968eef945322d1e28d7e833b6a549a6da27",
+                "reference": "b7bac968eef945322d1e28d7e833b6a549a6da27",
                 "shasum": ""
             },
             "require": {
@@ -4067,7 +4114,7 @@
                 "proxy pattern",
                 "service proxies"
             ],
-            "time": "2019-08-10T10:43:36+00:00"
+            "time": "2019-12-17T09:22:43+00:00"
         },
         {
             "name": "openlss/lib-array2xml",
@@ -4464,16 +4511,16 @@
         },
         {
             "name": "phpspec/phpspec",
-            "version": "6.1.0",
+            "version": "6.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpspec/phpspec.git",
-                "reference": "8004e609e4d365555a85617c36d30127e3233517"
+                "reference": "486aaa736e9e24f3e22a6545f6affb88f98e2602"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpspec/phpspec/zipball/8004e609e4d365555a85617c36d30127e3233517",
-                "reference": "8004e609e4d365555a85617c36d30127e3233517",
+                "url": "https://api.github.com/repos/phpspec/phpspec/zipball/486aaa736e9e24f3e22a6545f6affb88f98e2602",
+                "reference": "486aaa736e9e24f3e22a6545f6affb88f98e2602",
                 "shasum": ""
             },
             "require": {
@@ -4544,7 +4591,7 @@
                 "testing",
                 "tests"
             ],
-            "time": "2019-11-28T14:06:43+00:00"
+            "time": "2019-12-17T10:23:12+00:00"
         },
         {
             "name": "phpspec/prophecy",
@@ -4611,16 +4658,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "0.12.2",
+            "version": "0.12.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "15a2c2b7d4195aa712506e14763ef7646ac6a08c"
+                "reference": "c15a6ea55da71d8133399306f560cfe4d30301b7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/15a2c2b7d4195aa712506e14763ef7646ac6a08c",
-                "reference": "15a2c2b7d4195aa712506e14763ef7646ac6a08c",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/c15a6ea55da71d8133399306f560cfe4d30301b7",
+                "reference": "c15a6ea55da71d8133399306f560cfe4d30301b7",
                 "shasum": ""
             },
             "require": {
@@ -4647,7 +4694,7 @@
                 "MIT"
             ],
             "description": "PHPStan - PHP Static Analysis Tool",
-            "time": "2019-12-09T09:13:49+00:00"
+            "time": "2019-12-14T13:41:17+00:00"
         },
         {
             "name": "sebastian/comparator",

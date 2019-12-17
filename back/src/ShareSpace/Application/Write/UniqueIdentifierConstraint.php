@@ -17,12 +17,7 @@ use Symfony\Component\Validator\Constraint;
  */
 final class UniqueIdentifierConstraint extends Constraint
 {
-    /** @var string */
-    public $queryClass;
-
-    /** @var string */
-    public $entityName;
-
-    /** @var string */
-    public $message = 'The {{ entity_name }} identified {{ identifier }} already exists';
+    public string $queryClass;
+    public string $entityName;
+    public string $message = 'The {{ entity_name }} identified {{ identifier }} already exists';
 }

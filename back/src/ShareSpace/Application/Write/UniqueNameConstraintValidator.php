@@ -22,8 +22,7 @@ use Webmozart\Assert\Assert;
  */
 final class UniqueNameConstraintValidator extends ConstraintValidator
 {
-    /** @var QueryBus */
-    private $queryBus;
+    private QueryBus $queryBus;
 
     public function __construct(QueryBus $queryBus)
     {

@@ -11,24 +11,59 @@ declare(strict_types=1);
 namespace Todo\Tests\Todo\Acceptance\Behat;
 
 use Behat\Behat\Context\Context;
-use Behat\Behat\Tester\Exception\PendingException;
+use Todo\ShareSpace\Tool\MessageBus\CommandBus;
+use Todo\ShareSpace\Tool\MessageBus\QueryBus;
+use Todo\Todo\Application\Read\CountTaskOfTodoList\CountTaskOfTodoList;
+use Todo\Todo\Application\Write\AddTaskToTodoList\AddTaskToTodoList;
+use Todo\Todo\Application\Write\AddTodoList\AddTodoList;
+use Todo\Todo\Domain\TodoList\Write\TodoList;
+use Webmozart\Assert\Assert;
 
 final class TodoContext implements Context
 {
-    /**
-     * @Given I'm connected as :username
-     */
-    public function imConnectedAs(string $username): void
+    private CommandBus $commandBus;
+    private QueryBus $queryBus;
+
+    private array $todoLists = [];
+
+    public function __construct(CommandBus $commandBus, QueryBus $queryBus)
     {
-        throw new PendingException();
+        $this->commandBus = $commandBus;
+        $this->queryBus = $queryBus;
     }
 
     /**
+     * @Given I'm connected as :username
+     */
+    public function imConnectedAs(string $username): bool
+    {
+        return true;
+    }
+
+    /**
+     * @Given a todo list named :todoListName
      * @When I create a todo list named :todoListName
      */
     public function iCreateATodoListNamed(string $todoListName)
     {
-        throw new PendingException();
+        $command = new AddTodoList();
+        $command->name = $todoListName;
+
+        $todoListId = $this->commandBus->dispatch($command);
+
+        $this->todoLists[$todoListName] = $todoListId;
+    }
+
+    /**
+     * @When I add a task named :taskName to the list :todoListName
+     */
+    public function iAddATaskNamedToTheList(string $taskName, string $todoListName)
+    {
+        $command = new AddTaskToTodoList();
+        $command->name = $taskName;
+        $command->todoListIdentifier = $this->todoLists[$todoListName];
+
+        $this->commandBus->dispatch($command);
     }
 
     /**
@@ -36,6 +71,10 @@ final class TodoContext implements Context
      */
     public function shouldHaveTask(string $todoListName, int $numberOfTasks)
     {
-        throw new PendingException();
+        $query = new CountTaskOfTodoList();
+        $query->todoListName = $todoListName;
+
+        $result = $this->queryBus->fetch($query);
+        Assert::eq($result, $numberOfTasks);
     }
 }

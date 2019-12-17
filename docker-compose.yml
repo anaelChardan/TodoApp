@@ -44,7 +44,7 @@ services:
     depends_on:
       - 'fpm'
     ports:
-      - '${DOCKER_PORT_HTTP:-8001}:80'
+      - '${DOCKER_PORT_HTTP:-8002}:80'
     volumes:
       - './back:/srv/todo:ro'
       - './infra/httpd/httpd.conf:/usr/local/apache2/conf/httpd.conf:ro'

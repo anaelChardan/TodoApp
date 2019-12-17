@@ -34,7 +34,7 @@ final class RegisterYmlValidationFileSpec extends ObjectBehavior
         $validatorBuilder
             ->addMethodCall(
                 'addYamlMappings',
-                [["/srv/todo/tests/TestingBoundedContext/Infrastructure/Application/DomainDrivenDesign/../../../Application/test.yml"]]
+                [["/srv/todo/tests/TestingBoundedContext/Infrastructure/Application/DomainDrivenDesign/../../../Application/test.yaml"]]
             )->shouldBeCalled();
         $this->process($containerBuilder);
     }

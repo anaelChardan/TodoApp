@@ -60,6 +60,12 @@ app-prod:
 	APP_ENV=prod $(MAKE) up
 	APP_ENV=prod $(MAKE) cache
 
+.PHONY: app-in-memory
+app-in-memory:
+	APP_ENV=in_memory $(MAKE) back/vendor
+	APP_ENV=in_memory $(MAKE) up
+	APP_ENV=in_memory $(MAKE) cache
+
 .PHONY: install
 install: back/vendor
 

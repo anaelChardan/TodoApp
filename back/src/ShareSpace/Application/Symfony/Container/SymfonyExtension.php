@@ -16,8 +16,7 @@ use Todo\ShareSpace\Application\DomainDrivenDesign\BoundedContextExtension;
 
 final class SymfonyExtension implements ExtensionInterface
 {
-    /** @var BoundedContextExtension */
-    private $boundedContextExtension;
+    private BoundedContextExtension $boundedContextExtension;
 
     public function __construct(BoundedContextExtension $boundedContextExtension)
     {

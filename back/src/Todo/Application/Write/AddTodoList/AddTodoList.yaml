@@ -1,0 +1,6 @@
+Todo\Todo\Application\Write\AddTodoList\AddTodoList:
+  properties:
+    identifier:
+      - Uuid: ~
+    name:
+      - NotBlank: ~

@@ -1,5 +1,5 @@
 suites:
-  menu:
+  todo:
     namespace: Todo\Todo
     psr4_prefix: Todo\Todo
     spec_path: tests/Todo

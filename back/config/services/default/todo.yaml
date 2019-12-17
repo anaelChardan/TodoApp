@@ -13,7 +13,7 @@ services:
 
   command_handlers:
     namespace: Todo\
-    resource: '%kernel.project_dir%/src/**/Write/*Handler.php'
+    resource: '%kernel.project_dir%/src/**/Write/**/*Handler.php'
     autoconfigure: false
     tags:
       - { name: messenger.message_handler, bus: command.bus }

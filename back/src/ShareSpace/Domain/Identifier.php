@@ -14,8 +14,7 @@ use Ramsey\Uuid\UuidInterface;
 
 abstract class Identifier
 {
-    /** @var UuidInterface */
-    protected $uuid;
+    protected UuidInterface $uuid;
 
     public function __construct(UuidInterface $uuid)
     {

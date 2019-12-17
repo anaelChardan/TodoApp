@@ -17,8 +17,7 @@ use Symfony\Component\Finder\Finder;
 
 final class RegisterYmlValidationFile implements CompilerPassInterface
 {
-    /** @var string */
-    private $boundedContextPath;
+    private string $boundedContextPath;
 
     public function __construct(string $boundedContextPath)
     {
@@ -36,7 +35,7 @@ final class RegisterYmlValidationFile implements CompilerPassInterface
         }
 
         /** @var \SplFileInfo[] $mappingFiles */
-        $mappingFiles = Finder::create()->files()->in($applicationDirectory)->name('*.yml');
+        $mappingFiles = Finder::create()->files()->in($applicationDirectory)->name('*.yaml');
 
         $validationFiles = [];
 
