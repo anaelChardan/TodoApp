@@ -1,22 +1,17 @@
 default:
   suites:
-    acceptance_menu:
+    acceptance_todo:
       paths:
         - '%paths.base%/../../../../features/todo'
       contexts:
-        - 'Todo\Tests\Todo\Acceptance\Behat\SharedCatalog\IngredientContext'
-        - 'Todo\Tests\Todo\Acceptance\Behat\SharedCatalog\Drinks\CommonDrinkContext'
-        - 'Todo\Tests\Todo\Acceptance\Behat\SharedCatalog\Drinks\CocktailContext'
-        - 'Todo\Tests\Todo\Acceptance\Behat\PartnerContext'
+        - 'Todo\Tests\Todo\Acceptance\Behat\TodoContext'
       filters:
         tags: '@acceptance&&~@skip'
 
-    end_to_end_menu:
+    end_to_end_todo:
       paths:
         - '%paths.base%/../../../../features/todo'
-      contexts:
-        - 'Todo\Tests\Todo\EndToEnd\Behat\SharedCatalog\IngredientContext'
-        - 'Todo\Tests\Todo\EndToEnd\Behat\PartnerContext'
+      contexts: []
       filters:
         tags: '@end-to-end&&~@skip'
 
