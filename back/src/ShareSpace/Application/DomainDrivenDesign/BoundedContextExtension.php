@@ -24,7 +24,9 @@ interface BoundedContextExtension
     public function path(): string;
 
     /**
-     * Returns an array xml definition to namespace of all entities
+     * Returns an array xml definition to namespace of all entities.
+     *
+     * @return string[]
      */
     public function doctrineMapping(): array;
 }

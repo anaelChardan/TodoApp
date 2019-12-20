@@ -41,8 +41,7 @@ class AddTaskToTodoListHandlerSpec extends ObjectBehavior
         $command->name = NameSet::one()->__toString();
 
         $repository->get(Identifier::fromUuidString($command->todoListIdentifier))->willReturn($todoList);
-        $task = new Task(TaskIdentifier::fromUuidString($command->identifier), Name::fromString($command->name));
-        $todoList->addTask($task);
+        $todoList->addTask(TaskIdentifier::fromUuidString($command->identifier), Name::fromString($command->name));
         $repository->save($todoList)->shouldBeCalled();
 
         $this->__invoke($command);

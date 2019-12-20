@@ -25,7 +25,7 @@ final class NameSet
     public static function any(): Set
     {
         return Decorate::of(
-            static fn (string $string): Name =>  Name::fromString($string),
+            fn (string $string): Name =>  Name::fromString($string),
             Strings::any()
         );
     }

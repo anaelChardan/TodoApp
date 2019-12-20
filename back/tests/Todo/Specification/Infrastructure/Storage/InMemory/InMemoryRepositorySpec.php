@@ -1,14 +1,14 @@
 <?php
 
-namespace Specification\Todo\Todo\Infrastructure\Storage\TodoList;
+namespace Specification\Todo\Todo\Infrastructure\Storage\InMemory;
 
 use Innmind\BlackBox\PHPUnit\BlackBox;
 use PhpSpec\ObjectBehavior;
 use Todo\Tests\Todo\Set\Domain\TodoList\TodoListSet;
 use Todo\Todo\Domain\TodoList\Write\Repository;
 use Todo\Todo\Domain\TodoList\Write\TodoList;
-use Todo\Todo\Infrastructure\Storage\TodoList\InMemoryRepository;
-use Todo\Todo\Infrastructure\Storage\TodoList\Store;
+use Todo\Todo\Infrastructure\Storage\InMemory\InMemoryRepository;
+use Todo\Todo\Infrastructure\Storage\InMemory\Store;
 
 class InMemoryRepositorySpec extends ObjectBehavior
 {

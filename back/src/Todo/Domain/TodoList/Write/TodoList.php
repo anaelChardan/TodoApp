@@ -9,8 +9,8 @@
 
 namespace Todo\Todo\Domain\TodoList\Write;
 
-use Ds\Set;
-use Todo\Todo\Domain\TodoList\Write\Task\Task;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 /**
  * @psalm-suppress TooManyTemplateParams
@@ -19,8 +19,9 @@ class TodoList
 {
     private Identifier $identifier;
     private Name $name;
-    /** @var Set<Task> */
-    private Set $tasks;
+
+    /** @var Collection<string, Task\Task> */
+    private Collection $tasks;
 
     /**
      * @psalm-suppress MixedPropertyTypeCoercion
@@ -29,7 +30,7 @@ class TodoList
     {
         $this->identifier = $identifier;
         $this->name = $name;
-        $this->tasks = new Set();
+        $this->tasks = new ArrayCollection();
     }
 
     public function identifier(): Identifier
@@ -47,8 +48,8 @@ class TodoList
         return $this->tasks->count();
     }
 
-    public function addTask(Task $task): void
+    public function addTask(Task\Identifier $taskIdentifier, Task\Name $name): void
     {
-        $this->tasks->add($task);
+        $this->tasks->set((string) $taskIdentifier, new Task\Task($taskIdentifier, $name, $this));
     }
 }

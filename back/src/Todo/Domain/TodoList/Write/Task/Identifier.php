@@ -9,8 +9,17 @@
 
 namespace Todo\Todo\Domain\TodoList\Write\Task;
 
+use Ramsey\Uuid\Uuid;
 use Todo\ShareSpace\Domain\Identifier as AbstractIdentifier;
 
 final class Identifier extends AbstractIdentifier
 {
+    public static function fromUuidString(string $uuid): Identifier
+    {
+        try {
+            return new Identifier(Uuid::fromString($uuid));
+        } catch (\InvalidArgumentException $exception) {
+            throw new \InvalidArgumentException('Expected a valid uuid for '.static::class, (int) $exception->getCode(), $exception);
+        }
+    }
 }

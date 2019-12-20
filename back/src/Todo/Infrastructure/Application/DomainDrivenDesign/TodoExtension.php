@@ -33,7 +33,7 @@ final class TodoExtension implements BoundedContextExtension
 
     public function doctrineMapping(): array
     {
-        $path = $this->path() . '/Infrastructure/Storage/Doctrine/Mapping';
+        $path = $this->path().'/Infrastructure/Storage/Doctrine/Mapping';
 
         return [
             $path => 'Todo\Todo\Domain\TodoList\Write',

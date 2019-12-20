@@ -1,9 +1,9 @@
 <?php
 /**
- * MenuPleaz Project.
+ * Todo Project.
  *
  * @author    Anael Chardan <anael.chardan@gmail.com>
- * @copyright 2019 MenuPleaz
+ * @copyright 2019 Todo
  * @license   Proprietary
  */
 declare(strict_types=1);
@@ -15,6 +15,9 @@ use Todo\Todo\Domain\TodoList\Write\Identifier;
 
 final class IdentifierType extends AbstractIdentifierType
 {
+    /**
+     * {@inheritdoc}
+     */
     protected function getFqcn(): string
     {
         return Identifier::class;

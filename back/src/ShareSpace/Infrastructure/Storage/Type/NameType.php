@@ -1,18 +1,19 @@
 <?php
 /**
- * MenuPleaz Project.
+ * Todo Project.
  *
  * @author    Anael Chardan <anael.chardan@gmail.com>
- * @copyright 2019 MenuPleaz
+ * @copyright 2019 Todo
  * @license   Proprietary
  */
 declare(strict_types=1);
 
 namespace Todo\ShareSpace\Infrastructure\Storage\Type;
 
+use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\ConversionException;
 use Doctrine\DBAL\Types\Type;
-use Doctrine\DBAL\Platforms\AbstractPlatform;
+use Todo\ShareSpace\Domain\Name;
 
 abstract class NameType extends Type
 {
@@ -27,7 +28,7 @@ abstract class NameType extends Type
         try {
             return $className::fromString((string) $value);
         } catch (\InvalidArgumentException $exception) {
-            throw ConversionException::conversionFailed($value, $className);
+            throw ConversionException::conversionFailed((string) $value, $className);
         }
     }
 
@@ -43,8 +44,11 @@ abstract class NameType extends Type
             return $name;
         }
 
-        throw ConversionException::conversionFailed($name, $className);
+        throw ConversionException::conversionFailed((string) $name, $className);
     }
 
+    /**
+     * @return class-string<Name>
+     */
     abstract protected function getFqcn(): string;
 }

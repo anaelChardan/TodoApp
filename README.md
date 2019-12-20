@@ -29,6 +29,11 @@ You'll probably want to see logs for fpm:
 docker-compose logs -f fpm
 ```
 
+If you want to setup the database:
+```bash
+make db-schema
+```
+
 ## Architecture and guidelines
 
 This project completely decouples the front end and the back end
@@ -165,6 +170,7 @@ We have two buses used (stored in `ShareSpace/Tool/MessageBus`):
 
 - default: common for all other environments
 - in_memory: no infrastructure dependencies (use only fakes)
+- test_database: only for testing database
 - dev: like in_memory now
 - prod: use the infrastructure, does not work for now
 

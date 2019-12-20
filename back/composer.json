@@ -26,14 +26,18 @@
     },
     "require-dev": {
         "behat/behat": "^3.5",
+        "dama/doctrine-test-bundle": "^6.3",
         "friends-of-behat/symfony-extension": "^2.0",
         "friendsofphp/php-cs-fixer": "^2.16",
         "innmind/black-box": "^3.0",
         "phpro/grumphp": "^0.17.0",
         "phpspec/phpspec": "^6.1",
+        "phpstan/extension-installer": "^1.0",
         "phpstan/phpstan": "^0.12.2",
+        "phpstan/phpstan-doctrine": "^0.12.5",
         "symfony/test-pack": "^1.0",
-        "vimeo/psalm": "^3.7"
+        "vimeo/psalm": "^3.7",
+        "weirdan/doctrine-psalm-plugin": "^0.8.0"
     },
     "config": {
         "preferred-install": {

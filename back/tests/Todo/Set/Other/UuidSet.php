@@ -18,16 +18,13 @@ final class UuidSet
 {
     public static function one(): UuidInterface
     {
-        return Uuid::uuid5(
-            Uuid::NAMESPACE_DNS,
-            Set\Strings::any()->take(1)->values()->current()
-        );
+        return static::any()->take(1)->values()->current();
     }
 
     public static function any(): Set
     {
         return Set\Decorate::of(
-            static function (string $string): UuidInterface
+            function (string $string): UuidInterface
             {
                 return Uuid::uuid5(Uuid::NAMESPACE_DNS, $string);
             },

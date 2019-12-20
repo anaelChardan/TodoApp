@@ -1,13 +1,14 @@
 <?php
 
-namespace Specification\Todo\Todo\Infrastructure\Storage\TodoList;
+namespace Specification\Todo\Todo\Infrastructure\Storage\InMemory;
 
 use PhpSpec\ObjectBehavior;
-use Todo\Tests\Todo\Set\Domain\TodoList\Task\TaskSet;
+use Todo\Tests\Todo\Set\Domain\TodoList\Task\IdentifierSet;
+use Todo\Tests\Todo\Set\Domain\TodoList\Task\NameSet;
 use Todo\Tests\Todo\Set\Domain\TodoList\TodoListSet;
 use Todo\Todo\Domain\TodoList\Read\CountTaskForTodoList;
-use Todo\Todo\Infrastructure\Storage\TodoList\InMemoryCountTaskForTodoList;
-use Todo\Todo\Infrastructure\Storage\TodoList\Store;
+use Todo\Todo\Infrastructure\Storage\InMemory\InMemoryCountTaskForTodoList;
+use Todo\Todo\Infrastructure\Storage\InMemory\Store;
 
 class InMemoryCountTaskForTodoListSpec extends ObjectBehavior
 {
@@ -31,8 +32,9 @@ class InMemoryCountTaskForTodoListSpec extends ObjectBehavior
     {
         $store = new Store();
         $todoList = TodoListSet::one();
-        $task = TaskSet::one();
-        $todoList->addTask($task);
+        $taskName = NameSet::one();
+        $taskIdentifier = IdentifierSet::one();
+        $todoList->addTask($taskIdentifier, $taskName);
         $store->set($todoList->identifier()->__toString(), $todoList);
         $this->beConstructedWith($store);
         $this->__invoke($todoList->name()->__toString())->shouldReturn(1);

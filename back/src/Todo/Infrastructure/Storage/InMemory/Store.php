@@ -8,7 +8,7 @@
  */
 declare(strict_types=1);
 
-namespace Todo\Todo\Infrastructure\Storage\TodoList;
+namespace Todo\Todo\Infrastructure\Storage\InMemory;
 
 use Ds\Map;
 

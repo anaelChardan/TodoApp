@@ -7,13 +7,13 @@
     xsi:schemaLocation="https://getpsalm.org/schema/config ../../../vendor/vimeo/psalm/config.xsd"
 >
     <projectFiles>
-        <directory name="src/Todo" />
+        <directory name="src/Todo"/>
         <ignoreFiles>
-            <directory name="vendor" />
+            <directory name="vendor"/>
         </ignoreFiles>
     </projectFiles>
 
     <issueHandlers>
-        <LessSpecificReturnType errorLevel="info" />
+        <LessSpecificReturnType errorLevel="info"/>
     </issueHandlers>
-</psalm>
+<plugins><pluginClass class="Weirdan\DoctrinePsalmPlugin\Plugin"/></plugins></psalm>

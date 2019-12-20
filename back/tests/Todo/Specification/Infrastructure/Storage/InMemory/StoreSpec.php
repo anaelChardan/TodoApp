@@ -1,12 +1,12 @@
 <?php
 
-namespace Specification\Todo\Todo\Infrastructure\Storage\TodoList;
+namespace Specification\Todo\Todo\Infrastructure\Storage\InMemory;
 
 use Ds\Map;
 use Innmind\BlackBox\PHPUnit\BlackBox;
 use Innmind\BlackBox\Set\Strings;
 use PhpSpec\ObjectBehavior;
-use Todo\Todo\Infrastructure\Storage\TodoList\Store;
+use Todo\Todo\Infrastructure\Storage\InMemory\Store;
 
 class StoreSpec extends ObjectBehavior
 {

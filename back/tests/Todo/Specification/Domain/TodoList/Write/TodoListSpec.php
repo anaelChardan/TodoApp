@@ -5,9 +5,9 @@ namespace Specification\Todo\Todo\Domain\TodoList\Write;
 use Innmind\BlackBox\PHPUnit\BlackBox;
 use PhpSpec\ObjectBehavior;
 use Todo\Tests\Todo\Set\Domain\TodoList\IdentifierSet;
+use Todo\Tests\Todo\Set\Domain\TodoList\Task\IdentifierSet as TaskIdentifierSet;
+use Todo\Tests\Todo\Set\Domain\TodoList\Task\NameSet as TaskNameSet;
 use Todo\Tests\Todo\Set\Domain\TodoList\NameSet;
-use Todo\Tests\Todo\Set\Domain\TodoList\Task\TaskSet;
-use Todo\Todo\Domain\TodoList\Write\Task\Task;
 use Todo\Todo\Domain\TodoList\Write\TodoList;
 
 class TodoListSpec extends ObjectBehavior
@@ -29,10 +29,10 @@ class TodoListSpec extends ObjectBehavior
         $numberOfTasks = 0;
 
         $this
-            ->forAll(TaskSet::any())
-            ->then(function (Task $task) use (&$numberOfTasks) {
+            ->forAll(TaskIdentifierSet::any(), TaskNameSet::any())
+            ->then(function ($identifier, $name) use (&$numberOfTasks) {
                 $numberOfTasks++;
-                $this->addTask($task);
+                $this->addTask(TaskIdentifierSet::one(), TaskNameSet::one());
                 $this->countTasks()->shouldReturn($numberOfTasks);
             });
     }

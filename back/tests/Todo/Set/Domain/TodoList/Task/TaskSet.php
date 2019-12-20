@@ -15,18 +15,19 @@ use Innmind\BlackBox\Set\Composite;
 use Todo\Todo\Domain\TodoList\Write\Task\Identifier;
 use Todo\Todo\Domain\TodoList\Write\Task\Name;
 use Todo\Todo\Domain\TodoList\Write\Task\Task;
+use Todo\Todo\Domain\TodoList\Write\TodoList;
 
 final class TaskSet
 {
-    public static function one(): Task
+    public static function one(TodoList $todoList): Task
     {
-        return static::any()->take(1)->values()->current();
+        return static::any($todoList)->take(1)->values()->current();
     }
 
-    public static function any(): Set
+    public static function any(TodoList $todoList): Set
     {
         return Composite::of(
-            static fn (Identifier $identifier, Name $name): Task => new Task($identifier, $name),
+            fn (Identifier $identifier, Name $name): Task => new Task($identifier, $name, $todoList),
             IdentifierSet::any(),
             NameSet::any()
         );

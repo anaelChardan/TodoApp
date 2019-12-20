@@ -9,4 +9,4 @@ doctrine:
             task_name: 'Todo\Todo\Infrastructure\Storage\Doctrine\Type\TodoList\Task\NameType'
     orm:
         auto_generate_proxy_classes: true
-        naming_strategy: doctrine.orm.naming_strategy.underscore
+        naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware

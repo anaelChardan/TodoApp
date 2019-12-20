@@ -10,25 +10,16 @@ declare(strict_types=1);
 
 namespace Todo\ShareSpace\Domain;
 
-use Webmozart\Assert\Assert;
-
 abstract class Name
 {
     private string $name;
 
-    protected const ERROR_MESSAGE_INSTANTIATION = '';
-
-    private function __construct(string $name)
+    protected function __construct(string $name)
     {
         $this->name = $name;
     }
 
-    public static function fromString(string $name): self
-    {
-        Assert::notEmpty($name, static::ERROR_MESSAGE_INSTANTIATION);
-
-        return new static($name);
-    }
+    abstract public static function fromString(string $name): Name;
 
     public function equals(Name $name): bool
     {

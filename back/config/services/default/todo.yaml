@@ -28,3 +28,9 @@ services:
   validators:
     namespace: Todo\
     resource: '%kernel.project_dir%/src/**/*Validator.php'
+
+  Todo\Todo\Domain\TodoList\Write\Repository:
+    class: 'Todo\Todo\Infrastructure\Storage\Doctrine\Repository\DoctrineTodoListRepository'
+
+  Todo\Todo\Domain\TodoList\Read\CountTaskForTodoList:
+    class: 'Todo\Todo\Infrastructure\Storage\Doctrine\Query\DoctrineCountTaskPerTodoList'

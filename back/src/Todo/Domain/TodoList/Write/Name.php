@@ -11,8 +11,14 @@ declare(strict_types=1);
 namespace Todo\Todo\Domain\TodoList\Write;
 
 use Todo\ShareSpace\Domain\Name as AbstractName;
+use Webmozart\Assert\Assert;
 
 final class Name extends AbstractName
 {
-    protected const ERROR_MESSAGE_INSTANTIATION = 'A todo list name cannot be empty';
+    public static function fromString(string $name): Name
+    {
+        Assert::notEmpty($name, 'A todo list name cannot be empty');
+
+        return new static($name);
+    }
 }

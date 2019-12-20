@@ -1,18 +1,19 @@
 <?php
 /**
- * MenuPleaz Project.
+ * Todo Project.
  *
  * @author    Anael Chardan <anael.chardan@gmail.com>
- * @copyright 2019 MenuPleaz
+ * @copyright 2019 Todo
  * @license   Proprietary
  */
 declare(strict_types=1);
 
 namespace Todo\ShareSpace\Infrastructure\Storage\Type;
 
+use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\ConversionException;
 use Doctrine\DBAL\Types\Type;
-use Doctrine\DBAL\Platforms\AbstractPlatform;
+use Todo\ShareSpace\Domain\Identifier;
 
 abstract class IdentifierType extends Type
 {
@@ -27,7 +28,7 @@ abstract class IdentifierType extends Type
         try {
             return $className::fromUuidString((string) $value);
         } catch (\InvalidArgumentException $exception) {
-            throw ConversionException::conversionFailed($value, $className);
+            throw ConversionException::conversionFailed((string) $value, $className);
         }
     }
 
@@ -43,8 +44,11 @@ abstract class IdentifierType extends Type
             return $identifier;
         }
 
-        throw ConversionException::conversionFailed($identifier, $className);
+        throw ConversionException::conversionFailed((string) $identifier, $className);
     }
 
+    /**
+     * @return class-string<Identifier>
+     */
     abstract protected function getFqcn(): string;
 }

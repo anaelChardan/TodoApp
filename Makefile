@@ -77,9 +77,12 @@ app-in-memory:
 .PHONY: install
 install: back/vendor
 
-.PHONY: start-back
-start-back:
-	$(PHP_ONE_LINE) bin/console server:run 0.0.0.0:8000
+.PHONY: db-schema
+db-schema:
+	$(PHP_RUN) bin/console d:s:u --dump-sql
+	$(PHP_RUN) bin/console d:s:u --force
+
+### TODO
 
 .PHONY: todo-php-cs-fixer
 todo-php-cs-fixer:
@@ -104,6 +107,10 @@ todo-back-run-spec:
 todo-back-desc-spec:
 	$(PHP_RUN) vendor/bin/phpspec desc -c config/tests/todo/phpspec.yml ${F}
 
+.PHONY: todo-back-integration
+todo-back-integration:
+	$(PHP_RUN) bin/phpunit -c config/tests/todo/phpunit.xml.dist
+
 .PHONY: todo-back-acceptance
 todo-back-acceptance:
 	$(PHP_RUN) vendor/bin/behat -p default -s acceptance_todo -c config/tests/todo/behat.yml ${F}
@@ -113,7 +120,7 @@ todo-back-end-to-end:
 	$(PHP_RUN) vendor/bin/behat -p default -s end_to_end_todo -c config/tests/todo/behat.yml ${F}
 
 .PHONY: todo-back
-todo-back: todo-back-static todo-back-run-spec todo-back-acceptance
+todo-back: todo-back-static todo-back-run-spec todo-back-acceptance todo-back-integration
 
 .PHONY: todo
 todo: todo-back
@@ -137,12 +144,16 @@ sharespace-back-static: sharespace-php-cs-fixer sharespace-phpstan sharespace-ps
 sharespace-back-run-spec:
 	$(PHP_RUN) vendor/bin/phpspec run -c config/tests/sharespace/phpspec.yml ${F}
 
+.PHONY: sharespace-back-integration
+sharespace-back-integration:
+	$(PHP_RUN) bin/phpunit -c config/tests/sharespace/phpunit.xml.dist
+
 .PHONY: sharespace-back-acceptance
 sharespace-back-acceptance:
 	$(PHP_RUN) vendor/bin/behat -p default -s test_demo -c config/tests/sharespace/behat.yml ${F}
 
 .PHONY: sharespace-back
-sharespace-back: sharespace-php-cs-fixer sharespace-phpstan sharespace-psalm sharespace-back-run-spec sharespace-back-acceptance
+sharespace-back: sharespace-php-cs-fixer sharespace-phpstan sharespace-psalm sharespace-back-run-spec sharespace-back-acceptance sharespace-back-integration
 
 .PHONY: sharespace
 sharespace: sharespace-back
@@ -162,6 +173,9 @@ back-static: php-cs-fixer phpstan psalm
 
 .PHONY: back-spec
 back-spec: todo-back-run-spec sharespace-back-run-spec
+
+.PHONY: back-integration
+back-integration: todo-back-integration sharespace-back-integration
 
 .PHONY: back-acceptance
 back-acceptance: todo-back-acceptance sharespace-back-acceptance

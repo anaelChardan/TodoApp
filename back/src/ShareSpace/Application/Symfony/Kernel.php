@@ -10,6 +10,7 @@
 namespace Todo\ShareSpace\Application\Symfony;
 
 use Doctrine\Bundle\DoctrineBundle\DependencyInjection\Compiler\DoctrineOrmMappingsPass;
+use Ds\Set;
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\Config\Resource\FileResource;
@@ -74,6 +75,14 @@ class Kernel extends BaseKernel
         return $this->getProjectDir().'/'.$extraPath;
     }
 
+    private function testingEnvironments(): Set
+    {
+        return new Set([
+            'in_memory',
+            'test_database',
+        ]);
+    }
+
     protected function configureContainer(ContainerBuilder $container, LoaderInterface $loader): void
     {
         foreach ($this->registeredBoundedContexts() as $boundedContextExtension) {
@@ -86,6 +95,9 @@ class Kernel extends BaseKernel
         $confDir = $this->getProjectPath('config');
 
         $loader->load($confDir.'/{packages}/*'.self::CONFIG_EXTS, 'glob');
+        if ($this->testingEnvironments()->contains($this->environment())) {
+            $loader->load($confDir.'/{packages}/test/'.'**/*'.self::CONFIG_EXTS, 'glob');
+        }
         $loader->load($confDir.'/{packages}/'.$this->environment().'/**/*'.self::CONFIG_EXTS, 'glob');
         $loader->load($confDir.'/services/default/**/*'.self::CONFIG_EXTS, 'glob');
         $loader->load($confDir.'/services/'.$this->environment().'/**/*'.self::CONFIG_EXTS, 'glob');

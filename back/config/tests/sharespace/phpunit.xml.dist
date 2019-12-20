@@ -5,23 +5,22 @@
          xsi:noNamespaceSchemaLocation="bin/.phpunit/phpunit.xsd"
          backupGlobals="false"
          colors="true"
-         bootstrap="config/bootstrap.php"
+         bootstrap="../../bootstrap.php"
+         convertNoticesToExceptions="false"
 >
     <php>
         <ini name="error_reporting" value="-1" />
-        <server name="APP_ENV" value="in_memory" force="true" />
+        <server name="APP_ENV" value="test_database" force="true" />
         <server name="SHELL_VERBOSITY" value="-1" />
         <server name="SYMFONY_PHPUNIT_REMOVE" value="" />
         <server name="SYMFONY_PHPUNIT_VERSION" value="7.5" />
         <server name="KERNEL_CLASS" value="Todo\ShareSpace\Application\Symfony\Kernel" />
+        <env name="SYMFONY_DEPRECATIONS_HELPER" value="weak" />
     </php>
 
     <testsuites>
-        <testsuite name="TodoIntegration">
-            <directory suffix="Integration.php">tests/Todo/Integration</directory>
-        </testsuite>
         <testsuite name="ShareSpaceIntegration">
-            <directory suffix="Integration.php">tests/ShareSpace/Integration</directory>
+            <directory suffix="Integration.php">../../../tests/ShareSpace/Integration</directory>
         </testsuite>
     </testsuites>
 
@@ -34,4 +33,8 @@
     <listeners>
         <listener class="Symfony\Bridge\PhpUnit\SymfonyTestsListener" />
     </listeners>
+    
+    <extensions>
+        <extension class="DAMA\DoctrineTestBundle\PHPUnit\PHPUnitExtension" />
+    </extensions>
 </phpunit>

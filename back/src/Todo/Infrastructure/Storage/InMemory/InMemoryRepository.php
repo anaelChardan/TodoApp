@@ -1,6 +1,6 @@
 <?php
 
-namespace Todo\Todo\Infrastructure\Storage\TodoList;
+namespace Todo\Todo\Infrastructure\Storage\InMemory;
 
 use Todo\Todo\Domain\TodoList\Write\Identifier;
 use Todo\Todo\Domain\TodoList\Write\Repository;

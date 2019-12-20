@@ -26,7 +26,7 @@ final class IdentifierSet
     public static function any(): Set
     {
         return Decorate::of(
-            static fn (UuidInterface $uuid): Identifier => new Identifier($uuid),
+            fn (UuidInterface $uuid): Identifier => new Identifier($uuid),
             UuidSet::any()
         );
     }
