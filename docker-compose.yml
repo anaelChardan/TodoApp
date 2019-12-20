@@ -21,6 +21,21 @@ services:
     networks:
       - 'todo'
 
+  node:
+    image: 'node:10.8.0'
+    user: 'node'
+    command: 'yarn watch'
+    volumes:
+      - './back:/srv/todo'
+      - './features:/srv/features'
+      - '~/.cache/yarn:/home/node/.yarn-cache'
+    working_dir: '/srv/todo'
+    ports:
+      - '${DOCKER_PORT_NODE:-3000}:3000'
+      - '8084:8080'
+    networks:
+      - 'todo'
+
   fpm:
     image: 'todo/dev/php:7.4'
     environment:
@@ -49,6 +64,13 @@ services:
       - './back:/srv/todo:ro'
       - './infra/httpd/httpd.conf:/usr/local/apache2/conf/httpd.conf:ro'
       - './infra/httpd/back.conf:/usr/local/apache2/conf/vhost.conf:ro'
+    networks:
+      - 'todo'
+
+  db:
+    image: 'postgres:12.1'
+    ports:
+      - '${DOCKER_PORT_POSTGRES:-5434}:5432'
     networks:
       - 'todo'
 

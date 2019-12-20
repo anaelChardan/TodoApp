@@ -34,4 +34,12 @@ final class TestingBoundedContextExtension implements BoundedContextExtension
     {
         return \sprintf('%s/../../..', __DIR__);
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function doctrineMapping(): array
+    {
+        return [];
+    }
 }

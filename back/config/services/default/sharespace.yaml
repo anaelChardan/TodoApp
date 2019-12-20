@@ -21,3 +21,8 @@ services:
     Todo\ShareSpace\Infrastructure\Http\Exception\MessengerValidationExceptionListener:
         arguments:
             - 'Todo\ShareSpace\Infrastructure\Http\Exception\RenderExceptionController::renderAction'
+
+    controllers:
+        namespace: Todo\ShareSpace\Infrastructure\Http\Controller\
+        resource: '%kernel.project_dir%/src/ShareSpace/Infrastructure/Http/Controller/*'
+        public: true

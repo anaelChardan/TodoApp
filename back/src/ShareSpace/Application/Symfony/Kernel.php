@@ -9,6 +9,7 @@
 
 namespace Todo\ShareSpace\Application\Symfony;
 
+use Doctrine\Bundle\DoctrineBundle\DependencyInjection\Compiler\DoctrineOrmMappingsPass;
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\Config\Resource\FileResource;
@@ -108,6 +109,9 @@ class Kernel extends BaseKernel
     private function configureBoundedContext(BoundedContextExtension $boundedContext, ContainerBuilder $container): void
     {
         $container->registerExtension(new SymfonyExtension($boundedContext));
+        $container->addCompilerPass(DoctrineOrmMappingsPass::createXmlMappingDriver(
+            $boundedContext->doctrineMapping(), ['doctrine.orm.entity_manager']
+        ));
         $container->addCompilerPass(new RegisterYmlValidationFile($boundedContext->path()));
     }
 

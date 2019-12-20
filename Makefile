@@ -5,6 +5,7 @@ FRONT_DIR=$(ROOT_DIR)/front
 DOCKER_COMPOSE=docker-compose
 PHP_RUN=$(DOCKER_COMPOSE) run --rm -u www-data php php
 PHP_EXEC=$(DOCKER_COMPOSE) exec fpm php
+YARN_EXEC=$(DOCKER_COMPOSE) run --rm -u node node yarn
 
 CI ?= false
 
@@ -38,6 +39,10 @@ sf:
 composer-dev:
 	APP_ENV=dev $(PHP_RUN) /usr/local/bin/composer ${F}
 
+.PHONY: composer-in_memory
+composer-in_memory:
+	APP_ENV=in_memory $(PHP_RUN) /usr/local/bin/composer ${F}
+
 .PHONY: cache
 cache: back/vendor
 	rm -rf back/var/cache && $(PHP_RUN) bin/console cache:warmup
@@ -47,6 +52,9 @@ back/composer.lock: back/composer.json
 
 back/vendor: back/composer.lock
 	$(PHP_RUN) /usr/local/bin/composer install
+
+back/node_modules: back/package.json
+	$(YARN_EXEC) install
 
 .PHONY: app-dev
 app-dev:

@@ -9,10 +9,13 @@
 
 namespace Todo\Todo\Domain\TodoList\Write\Task;
 
-final class Task
+class Task
 {
     private Identifier $identifier;
     private Name $name;
+
+    /** Below, only doctrine related field, forbidden to use */
+    private TodoList $todoList;
 
     public function __construct(Identifier $identifier, Name $name)
     {

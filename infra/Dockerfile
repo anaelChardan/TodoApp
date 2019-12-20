@@ -26,7 +26,7 @@ RUN echo 'APT::Install-Recommends "0" ; APT::Install-Suggests "0" ;' > /etc/apt/
         php7.4-cli \
         php7.4-intl \
         php7.4-opcache \
-        php7.4-mysql \
+        php7.4-pgsql \
         php7.4-xml \
         php7.4-mbstring \
         php7.4-bcmath \

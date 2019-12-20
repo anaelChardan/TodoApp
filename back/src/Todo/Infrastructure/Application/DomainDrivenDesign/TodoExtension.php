@@ -30,4 +30,14 @@ final class TodoExtension implements BoundedContextExtension
     {
         return sprintf('%s/../../..', __DIR__);
     }
+
+    public function doctrineMapping(): array
+    {
+        $path = $this->path() . '/Infrastructure/Storage/Doctrine/Mapping';
+
+        return [
+            $path => 'Todo\Todo\Domain\TodoList\Write',
+            $path.'/Task' => 'Todo\Todo\Domain\TodoList\Write\Task',
+        ];
+    }
 }

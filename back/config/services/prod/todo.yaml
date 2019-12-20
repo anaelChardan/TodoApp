@@ -1,0 +1,15 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+
+  Todo\Todo\Domain\TodoList\Repository:
+    class: 'Todo\Todo\Infrastructure\Storage\TodoList\InMemoryRepository'
+
+  Todo\Todo\Domain\TodoList\Write\Repository:
+    class: 'Todo\Todo\Infrastructure\Storage\TodoList\InMemoryRepository'
+
+  Todo\Todo\Domain\TodoList\Read\CountTaskForTodoList:
+    class: 'Todo\Todo\Infrastructure\Storage\TodoList\InMemoryCountTaskForTodoList'
+
+  Todo\Todo\Infrastructure\Storage\TodoList\Store: ~

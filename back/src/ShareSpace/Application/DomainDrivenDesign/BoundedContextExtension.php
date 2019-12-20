@@ -22,4 +22,9 @@ interface BoundedContextExtension
      * Returns the the path to the root of the bounded context.
      */
     public function path(): string;
+
+    /**
+     * Returns an array xml definition to namespace of all entities
+     */
+    public function doctrineMapping(): array;
 }

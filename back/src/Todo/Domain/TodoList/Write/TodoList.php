@@ -15,7 +15,7 @@ use Todo\Todo\Domain\TodoList\Write\Task\Task;
 /**
  * @psalm-suppress TooManyTemplateParams
  */
-final class TodoList
+class TodoList
 {
     private Identifier $identifier;
     private Name $name;
