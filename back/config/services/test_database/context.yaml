@@ -1,0 +1,10 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+
+  Todo\Tests\Todo\EndToEnd\Behat\:
+    resource: '../../../tests/Todo/EndToEnd/Behat'
+
+  Todo\Tests\Behat\ApiTestHelper: ~
+  Todo\Tests\Behat\DatabasePurger: ~

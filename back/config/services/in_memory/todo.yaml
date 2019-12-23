@@ -3,13 +3,10 @@ services:
     autowire: true
     autoconfigure: true
 
-  Todo\Todo\Domain\TodoList\Repository:
-    class: 'Todo\Todo\Infrastructure\Storage\TodoList\InMemoryRepository'
-
   Todo\Todo\Domain\TodoList\Write\Repository:
-    class: 'Todo\Todo\Infrastructure\Storage\TodoList\InMemoryRepository'
+    class: 'Todo\Todo\Infrastructure\Storage\InMemory\InMemoryRepository'
 
   Todo\Todo\Domain\TodoList\Read\CountTaskForTodoList:
-    class: 'Todo\Todo\Infrastructure\Storage\TodoList\InMemoryCountTaskForTodoList'
+    class: 'Todo\Todo\Infrastructure\Storage\InMemory\InMemoryCountTaskForTodoList'
 
-  Todo\Todo\Infrastructure\Storage\TodoList\Store: ~
+  Todo\Todo\Infrastructure\Storage\InMemory\Store: ~

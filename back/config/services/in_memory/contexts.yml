@@ -8,6 +8,3 @@ services:
 
   Todo\Tests\Todo\Acceptance\Behat\:
     resource: '../../../tests/Todo/Acceptance/Behat'
-
-  Todo\Tests\Todo\EndToEnd\Behat\:
-    resource: '../../../tests/Todo/EndToEnd/Behat'

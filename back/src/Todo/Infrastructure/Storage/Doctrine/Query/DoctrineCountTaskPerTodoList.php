@@ -32,8 +32,8 @@ WHERE tl.name = :todo_list_name
 GROUP BY todo_list_identifier
 SQL;
 
-        $result = $this->connection->fetchColumn($query, ['todo_list_name' => $todoListName]);
+        $result = (int) $this->connection->fetchColumn($query, ['todo_list_name' => $todoListName]);
 
-        return (int) $result;
+        return $result;
     }
 }

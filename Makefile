@@ -113,14 +113,18 @@ todo-back-integration:
 
 .PHONY: todo-back-acceptance
 todo-back-acceptance:
-	$(PHP_RUN) vendor/bin/behat -p default -s acceptance_todo -c config/tests/todo/behat.yml ${F}
+	$(PHP_RUN) vendor/bin/behat -p acceptance_todo -c config/tests/todo/behat.yml ${F}
 
 .PHONY: todo-back-end-to-end
 todo-back-end-to-end:
 	$(PHP_RUN) vendor/bin/behat -p default -s end_to_end_todo -c config/tests/todo/behat.yml ${F}
 
+.PHONY: todo-back-end-to-end-api
+todo-back-end-to-end-api:
+	$(PHP_RUN) vendor/bin/behat -p end_to_end_api_todo -c config/tests/todo/behat.yml ${F}
+
 .PHONY: todo-back
-todo-back: todo-back-static todo-back-run-spec todo-back-acceptance todo-back-integration
+todo-back: todo-back-static todo-back-run-spec todo-back-acceptance todo-back-end-to-end-api todo-back-integration
 
 .PHONY: todo
 todo: todo-back

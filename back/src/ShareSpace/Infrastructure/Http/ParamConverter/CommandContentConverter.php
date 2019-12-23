@@ -15,6 +15,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Request\ParamConverter\ParamConverterInte
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Serializer\SerializerInterface;
 use Todo\ShareSpace\Application\DomainDrivenDesign\Command;
+use Todo\ShareSpace\Application\DomainDrivenDesign\Query;
 
 final class CommandContentConverter implements ParamConverterInterface
 {
@@ -50,6 +51,6 @@ final class CommandContentConverter implements ParamConverterInterface
             return false;
         }
 
-        return is_subclass_of($configuration->getClass(), Command::class);
+        return is_subclass_of($configuration->getClass(), Command::class) || is_subclass_of($configuration->getClass(), Query::class);
     }
 }

@@ -34,3 +34,8 @@ services:
 
   Todo\Todo\Domain\TodoList\Read\CountTaskForTodoList:
     class: 'Todo\Todo\Infrastructure\Storage\Doctrine\Query\DoctrineCountTaskPerTodoList'
+
+  controllers:
+    namespace: Todo\Todo\Infrastructure\UserInterface\Http\
+    resource: '%kernel.project_dir%/src/Todo/Infrastructure/UserInterface/Http/*'
+    public: true

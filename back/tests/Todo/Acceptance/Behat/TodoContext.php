@@ -16,7 +16,6 @@ use Todo\ShareSpace\Tool\MessageBus\QueryBus;
 use Todo\Todo\Application\Read\CountTaskOfTodoList\CountTaskOfTodoList;
 use Todo\Todo\Application\Write\AddTaskToTodoList\AddTaskToTodoList;
 use Todo\Todo\Application\Write\AddTodoList\AddTodoList;
-use Todo\Todo\Domain\TodoList\Write\TodoList;
 use Webmozart\Assert\Assert;
 
 final class TodoContext implements Context
