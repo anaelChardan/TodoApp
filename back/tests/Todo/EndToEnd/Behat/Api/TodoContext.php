@@ -32,6 +32,7 @@ final class TodoContext implements Context
     }
 
     /**
+     * @AfterScenario
      * @BeforeScenario
      */
     public function resetDatabase()
@@ -68,11 +69,9 @@ final class TodoContext implements Context
      */
     public function shouldHaveTask(string $todoListName, int $numberOfTasks)
     {
-        $content = ['todoListName' => $todoListName];
+        $response = $this->apiTestHelper->jsonGet([], 'get_todo_list_details', ['identifier' => $this->todoLists[$todoListName]]);
 
-        $response = $this->apiTestHelper->jsonGet($content, 'get_todo_list_tasks_count');
-
-        Assert::eq(\Safe\json_decode($response->getContent(), true)['todo_list_tasks_count'], $numberOfTasks);
+        Assert::eq(\Safe\json_decode($response->getContent(), true)['task_count'], $numberOfTasks);
     }
 
     /**
@@ -80,9 +79,9 @@ final class TodoContext implements Context
      */
     public function iAddATaskNamedToTheList(string $taskName, string $todoListName)
     {
-        $content = ['name' => $taskName, 'todoListIdentifier' => $this->todoLists[$todoListName]];
+        $content = ['name' => $taskName];
 
-        $response = $this->apiTestHelper->jsonPost($content, 'add_task_to_todo_list');
+        $response = $this->apiTestHelper->jsonPost($content, 'add_task_to_todo_list', ['identifier' => $this->todoLists[$todoListName]]);
 
         Assert::eq($response->getStatusCode(), Response::HTTP_ACCEPTED);
     }

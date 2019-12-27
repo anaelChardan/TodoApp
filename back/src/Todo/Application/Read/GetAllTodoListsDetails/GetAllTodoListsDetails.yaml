@@ -1,0 +1,5 @@
+Todo\Todo\Application\Write\GetAllTodoListsDetails\GetAllTodoListsDetails:
+  properties:
+    identifier:
+      - NotBlank: ~
+      - Uuid: ~

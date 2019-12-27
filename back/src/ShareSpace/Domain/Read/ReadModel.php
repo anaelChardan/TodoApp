@@ -8,9 +8,12 @@
  */
 declare(strict_types=1);
 
-namespace Todo\Todo\Domain\TodoList\Read;
+namespace Todo\ShareSpace\Domain\Read;
 
-interface CountTaskForTodoList
+interface ReadModel
 {
-    public function __invoke(string $todoListName): int;
+    /**
+     * @return array<mixed>
+     */
+    public function normalize(): array;
 }

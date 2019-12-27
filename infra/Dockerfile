@@ -22,6 +22,9 @@ RUN echo 'APT::Install-Recommends "0" ; APT::Install-Suggests "0" ;' > /etc/apt/
     echo "deb https://packages.sury.org/php/ buster main" | tee /etc/apt/sources.list.d/php.list && \
     apt-get update  && \
     apt-get --yes install ca-certificates \
+        build-essential \
+        php-pear \
+        php-dev \
         php7.4-fpm \
         php7.4-cli \
         php7.4-intl \
@@ -31,6 +34,7 @@ RUN echo 'APT::Install-Recommends "0" ; APT::Install-Suggests "0" ;' > /etc/apt/
         php7.4-mbstring \
         php7.4-bcmath \
         php7.4-apcu && \
+    pecl install ds && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
     ln -s /usr/sbin/php-fpm7.4 /usr/local/sbin/php-fpm && \

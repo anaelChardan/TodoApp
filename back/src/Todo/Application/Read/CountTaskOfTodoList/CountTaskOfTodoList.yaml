@@ -1,4 +1,0 @@
-Todo\Todo\Application\Read\CountTaskOfTodoList\CountTaskOfTodoList:
-  properties:
-    todoListName:
-      - NotBlank: ~

@@ -17,12 +17,31 @@ class Task
     private Name $name;
 
     /** Below, only doctrine related field, forbidden to use */
-    private ?TodoList $todoList;
+    private ?TodoList $todoList = null;
 
     public function __construct(Identifier $identifier, Name $name, ?TodoList $todoList = null)
     {
         $this->identifier = $identifier;
         $this->name = $name;
         $this->todoList = $todoList;
+    }
+
+    /** Below is doctrine only, only allowed from the aggregate root */
+    public function ofTodoList(TodoList $todoList): void
+    {
+        if (null === $this->todoList) {
+            $this->todoList = $todoList;
+        }
+    }
+
+    /** Below is test only */
+    public function identifier(): Identifier
+    {
+        return $this->identifier;
+    }
+
+    public function name(): Name
+    {
+        return $this->name;
     }
 }

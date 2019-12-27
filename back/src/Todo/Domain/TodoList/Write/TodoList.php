@@ -43,13 +43,17 @@ class TodoList
         return $this->name;
     }
 
-    public function countTasks(): int
+    public function addTask(Task\Task $task): void
     {
-        return $this->tasks->count();
+        $task->ofTodoList($this);
+        $this->tasks->set((string) $task->identifier(), $task);
     }
 
-    public function addTask(Task\Identifier $taskIdentifier, Task\Name $name): void
+    /**
+     * @return Collection<string, Task\Task>
+     */
+    public function tasks(): Collection
     {
-        $this->tasks->set((string) $taskIdentifier, new Task\Task($taskIdentifier, $name, $this));
+        return $this->tasks;
     }
 }

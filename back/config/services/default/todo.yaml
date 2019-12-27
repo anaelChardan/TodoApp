@@ -32,10 +32,13 @@ services:
   Todo\Todo\Domain\TodoList\Write\Repository:
     class: 'Todo\Todo\Infrastructure\Storage\Doctrine\Repository\DoctrineTodoListRepository'
 
-  Todo\Todo\Domain\TodoList\Read\CountTaskForTodoList:
-    class: 'Todo\Todo\Infrastructure\Storage\Doctrine\Query\DoctrineCountTaskPerTodoList'
+  Todo\Todo\Domain\TodoList\Read\GetTodoListDetails:
+    class: 'Todo\Todo\Infrastructure\Storage\Doctrine\Query\DoctrineGetTodoListDetails'
+
+  Todo\Todo\Domain\TodoList\Read\GetTodoListsDetails:
+    class: 'Todo\Todo\Infrastructure\Storage\Doctrine\Query\DoctrineGetTodoListsDetails'
 
   controllers:
-    namespace: Todo\Todo\Infrastructure\UserInterface\Http\
-    resource: '%kernel.project_dir%/src/Todo/Infrastructure/UserInterface/Http/*'
+    namespace: Todo\Todo\Infrastructure\UserInterface\Http\TodoList\
+    resource: '%kernel.project_dir%/src/Todo/Infrastructure/UserInterface/Http/TodoList/**/*.php'
     public: true

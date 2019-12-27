@@ -14,6 +14,7 @@ use Todo\Todo\Domain\TodoList\Write\Identifier;
 use Todo\Todo\Domain\TodoList\Write\Repository;
 use Todo\Todo\Domain\TodoList\Write\Task\Identifier as TaskIdentifier;
 use Todo\Todo\Domain\TodoList\Write\Task\Name;
+use Todo\Todo\Domain\TodoList\Write\Task\Task;
 
 class AddTaskToTodoListHandler implements CommandHandler
 {
@@ -29,8 +30,10 @@ class AddTaskToTodoListHandler implements CommandHandler
         $todoList = $this->repository->get(Identifier::fromUuidString((string) $addTaskToTodoList->todoListIdentifier));
 
         $todoList->addTask(
-            TaskIdentifier::fromUuidString((string) $addTaskToTodoList->identifier),
-            Name::fromString((string) $addTaskToTodoList->name)
+            new Task(
+                TaskIdentifier::fromUuidString((string) $addTaskToTodoList->identifier),
+                Name::fromString((string) $addTaskToTodoList->name)
+            )
         );
 
         $this->repository->save($todoList);

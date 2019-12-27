@@ -13,6 +13,7 @@ namespace Todo\ShareSpace\Tool\MessageBus;
 use Symfony\Component\Messenger\HandleTrait;
 use Symfony\Component\Messenger\MessageBusInterface;
 use Todo\ShareSpace\Application\DomainDrivenDesign\Query;
+use Todo\ShareSpace\Domain\Read\ReadModel;
 
 /**
  * Not final for testing purpose
@@ -29,10 +30,8 @@ class QueryBus
 
     /**
      * @final
-     *
-     * @return mixed
      */
-    public function fetch(Query $query)
+    public function fetch(Query $query): ReadModel
     {
         return $this->handle($query);
     }

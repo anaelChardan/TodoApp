@@ -12,6 +12,7 @@ namespace Todo\Tests\Todo\Set\Domain\TodoList\Task;
 
 use Innmind\BlackBox\Set;
 use Innmind\BlackBox\Set\Decorate;
+use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 use Todo\Tests\Todo\Set\Other\UuidSet;
 use Todo\Todo\Domain\TodoList\Write\Task\Identifier;
@@ -25,9 +26,12 @@ final class IdentifierSet
 
     public static function any(): Set
     {
-        return Decorate::of(
-            fn (UuidInterface $uuid): Identifier => new Identifier($uuid),
-            UuidSet::any()
+        return Set\Decorate::of(
+            function (string $string): Identifier
+            {
+                return new Identifier(Uuid::uuid5(Uuid::NAMESPACE_DNS, $string));
+            },
+            new Set\Strings
         );
     }
 }

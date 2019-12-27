@@ -8,7 +8,7 @@
  */
 declare(strict_types=1);
 
-namespace Todo\Todo\Infrastructure\UserInterface\Http;
+namespace Todo\Todo\Infrastructure\UserInterface\Http\TodoList\Write;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -28,8 +28,9 @@ final class AddTaskForTodoList
     /**
      * @ParamConverter("addTaskToTodoList", class="Todo\Todo\Application\Write\AddTaskToTodoList\AddTaskToTodoList")
      */
-    public function __invoke(AddTaskToTodoList $addTaskToTodoList): JsonResponse
+    public function __invoke(string $identifier, AddTaskToTodoList $addTaskToTodoList): JsonResponse
     {
+        $addTaskToTodoList->todoListIdentifier = $identifier;
         $result = $this->commandBus->dispatch($addTaskToTodoList);
 
         return new JsonResponse(['task_identifier' => $result->toString()], Response::HTTP_ACCEPTED);

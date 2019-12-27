@@ -19,12 +19,12 @@ use Todo\Todo\Domain\TodoList\Write\TodoList;
 
 final class TaskSet
 {
-    public static function one(TodoList $todoList): Task
+    public static function one(?TodoList $todoList = null): Task
     {
         return static::any($todoList)->take(1)->values()->current();
     }
 
-    public static function any(TodoList $todoList): Set
+    public static function any(?TodoList $todoList = null): Set
     {
         return Composite::of(
             fn (Identifier $identifier, Name $name): Task => new Task($identifier, $name, $todoList),

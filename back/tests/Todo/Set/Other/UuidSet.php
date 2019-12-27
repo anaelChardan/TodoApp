@@ -26,9 +26,9 @@ final class UuidSet
         return Set\Decorate::of(
             function (string $string): UuidInterface
             {
-                return Uuid::uuid5(Uuid::NAMESPACE_DNS, $string);
+                return Uuid::uuid5(Uuid::NAMESPACE_DNS, Set\Strings::any()->take(1)->values()->current());
             },
-            Set\Strings::any()
+            new Set\Strings
         );
     }
 }

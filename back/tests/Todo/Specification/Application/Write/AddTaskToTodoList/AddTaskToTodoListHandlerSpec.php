@@ -6,6 +6,7 @@ use PhpSpec\ObjectBehavior;
 use Todo\ShareSpace\Application\DomainDrivenDesign\CommandHandler;
 use Todo\Tests\Todo\Set\Domain\TodoList\Task\IdentifierSet as TaskIdentifierSet;
 use Todo\Tests\Todo\Set\Domain\TodoList\Task\NameSet;
+use Todo\Tests\Todo\Set\Domain\TodoList\Task\TaskSet;
 use Todo\Tests\Todo\Set\Domain\TodoList\TodoListSet;
 use Todo\Todo\Application\Write\AddTaskToTodoList\AddTaskToTodoList;
 use Todo\Todo\Application\Write\AddTaskToTodoList\AddTaskToTodoListHandler;
@@ -36,12 +37,13 @@ class AddTaskToTodoListHandlerSpec extends ObjectBehavior
     {
         $todoList = TodoListSet::one();
         $command = new AddTaskToTodoList();
-        $command->identifier = TaskIdentifierSet::one()->__toString();
-        $command->todoListIdentifier = $todoList->identifier()->__toString();
-        $command->name = NameSet::one()->__toString();
+        $task = TaskSet::one();
+        $command->identifier = (string) $task->identifier();
+        $command->todoListIdentifier = (string) $todoList->identifier();
+        $command->name = (string) $task->name();
 
         $repository->get(Identifier::fromUuidString($command->todoListIdentifier))->willReturn($todoList);
-        $todoList->addTask(TaskIdentifier::fromUuidString($command->identifier), Name::fromString($command->name));
+        $todoList->addTask($task);
         $repository->save($todoList)->shouldBeCalled();
 
         $this->__invoke($command);

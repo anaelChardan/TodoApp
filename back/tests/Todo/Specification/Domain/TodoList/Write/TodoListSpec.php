@@ -2,12 +2,15 @@
 
 namespace Specification\Todo\Todo\Domain\TodoList\Write;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Innmind\BlackBox\PHPUnit\BlackBox;
 use PhpSpec\ObjectBehavior;
 use Todo\Tests\Todo\Set\Domain\TodoList\IdentifierSet;
 use Todo\Tests\Todo\Set\Domain\TodoList\Task\IdentifierSet as TaskIdentifierSet;
 use Todo\Tests\Todo\Set\Domain\TodoList\Task\NameSet as TaskNameSet;
 use Todo\Tests\Todo\Set\Domain\TodoList\NameSet;
+use Todo\Tests\Todo\Set\Domain\TodoList\Task\TaskSet;
+use Todo\Todo\Domain\TodoList\Write\Task\Task;
 use Todo\Todo\Domain\TodoList\Write\TodoList;
 
 class TodoListSpec extends ObjectBehavior
@@ -26,14 +29,15 @@ class TodoListSpec extends ObjectBehavior
 
     function it_is_possible_to_add_a_task()
     {
-        $numberOfTasks = 0;
+        $tasks = new ArrayCollection([]);
 
         $this
-            ->forAll(TaskIdentifierSet::any(), TaskNameSet::any())
-            ->then(function ($identifier, $name) use (&$numberOfTasks) {
-                $numberOfTasks++;
-                $this->addTask(TaskIdentifierSet::one(), TaskNameSet::one());
-                $this->countTasks()->shouldReturn($numberOfTasks);
+            ->forAll(TaskSet::any())
+            ->then(function (Task $task) use (&$tasks) {
+                $this->addTask($task);
+                $task->ofTodoList($this->getWrappedObject());
+                $tasks->set((string) $task->identifier(), $task);
+                $this->tasks()->shouldBeLike($tasks);
             });
     }
 }

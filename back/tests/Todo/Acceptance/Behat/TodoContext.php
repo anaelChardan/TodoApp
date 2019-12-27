@@ -13,9 +13,11 @@ namespace Todo\Tests\Todo\Acceptance\Behat;
 use Behat\Behat\Context\Context;
 use Todo\ShareSpace\Tool\MessageBus\CommandBus;
 use Todo\ShareSpace\Tool\MessageBus\QueryBus;
-use Todo\Todo\Application\Read\CountTaskOfTodoList\CountTaskOfTodoList;
+use Todo\Todo\Application\Read\GetTodoList\CountTaskOfTodoList;
+use Todo\Todo\Application\Read\GetTodoListDetails\GetTodoListDetails;
 use Todo\Todo\Application\Write\AddTaskToTodoList\AddTaskToTodoList;
 use Todo\Todo\Application\Write\AddTodoList\AddTodoList;
+use Todo\Todo\Domain\TodoList\Read\TodoList;
 use Webmozart\Assert\Assert;
 
 final class TodoContext implements Context
@@ -70,10 +72,11 @@ final class TodoContext implements Context
      */
     public function shouldHaveTask(string $todoListName, int $numberOfTasks)
     {
-        $query = new CountTaskOfTodoList();
-        $query->todoListName = $todoListName;
+        $query = new GetTodoListDetails();
+        $query->identifier = $this->todoLists[$todoListName];
 
+        /** @var TodoList $result */
         $result = $this->queryBus->fetch($query);
-        Assert::eq($result, $numberOfTasks);
+        Assert::eq($result->normalize()['task_count'], $numberOfTasks);
     }
 }

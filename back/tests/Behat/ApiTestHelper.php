@@ -26,21 +26,21 @@ final class ApiTestHelper
         $this->router = $router;
     }
 
-    public function jsonPost(array $content, string $routeName): JsonResponse
+    public function jsonPost(array $content, string $routeName, array $parameters = []): JsonResponse
     {
-        return $this->query($content, $routeName, 'POST');
+        return $this->query($content, $routeName, 'POST', $parameters);
     }
 
-    public function jsonGet(array $content, string $routeName): JsonResponse
+    public function jsonGet(array $content, string $routeName, array $parameters = []): JsonResponse
     {
-        return $this->query($content, $routeName, 'GET');
+        return $this->query($content, $routeName, 'GET', $parameters);
     }
 
-    private function query(array $content, string $routeName, string $method): JsonResponse
+    private function query(array $content, string $routeName, string $method, array $parameters = []): JsonResponse
     {
         return $this->kernel->handle(
             Request::create(
-                $this->router->generate($routeName, []),
+                $this->router->generate($routeName, $parameters),
                 $method,
                 [],
                 [],

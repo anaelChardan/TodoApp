@@ -27,7 +27,7 @@ final class NameSet
     {
         return Decorate::of(
             fn (string $string): Name => Name::fromString($string),
-            Strings::any()
+            new Strings
         );
     }
 }

@@ -2,9 +2,10 @@
     "type": "project",
     "license": "proprietary",
     "require": {
-        "php": "^7.1.3",
+        "php": "^7.4",
         "ext-ctype": "*",
         "ext-iconv": "*",
+        "ext-ds": "*",
         "matthiasnoback/convenient-immutability": "^0.2.1",
         "php-ds/php-ds": "^1.2",
         "ramsey/uuid": "^3.9",

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "31ca52749fdc3fdd1a7d7cd1cc4e1edd",
+    "content-hash": "880c06aff4b8442a9cf9a14dfcb78c57",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -5651,16 +5651,16 @@
         },
         {
             "name": "monolog/monolog",
-            "version": "2.0.1",
+            "version": "2.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "f9d56fd2f5533322caccdfcddbb56aedd622ef1c"
+                "reference": "c861fcba2ca29404dc9e617eedd9eff4616986b8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/f9d56fd2f5533322caccdfcddbb56aedd622ef1c",
-                "reference": "f9d56fd2f5533322caccdfcddbb56aedd622ef1c",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/c861fcba2ca29404dc9e617eedd9eff4616986b8",
+                "reference": "c861fcba2ca29404dc9e617eedd9eff4616986b8",
                 "shasum": ""
             },
             "require": {
@@ -5728,7 +5728,7 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2019-11-13T10:27:43+00:00"
+            "time": "2019-12-20T14:22:59+00:00"
         },
         {
             "name": "netresearch/jsonmapper",
@@ -5982,16 +5982,16 @@
         },
         {
             "name": "phpdocumentor/reflection-docblock",
-            "version": "4.3.2",
+            "version": "4.3.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/ReflectionDocBlock.git",
-                "reference": "b83ff7cfcfee7827e1e78b637a5904fe6a96698e"
+                "reference": "2ecaa9fef01634c83bfa8dc1fe35fb5cef223a62"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/b83ff7cfcfee7827e1e78b637a5904fe6a96698e",
-                "reference": "b83ff7cfcfee7827e1e78b637a5904fe6a96698e",
+                "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/2ecaa9fef01634c83bfa8dc1fe35fb5cef223a62",
+                "reference": "2ecaa9fef01634c83bfa8dc1fe35fb5cef223a62",
                 "shasum": ""
             },
             "require": {
@@ -6029,7 +6029,7 @@
                 }
             ],
             "description": "With this component, a library can provide support for annotations via DocBlocks or otherwise retrieve information that is embedded in a DocBlock.",
-            "time": "2019-09-12T14:27:41+00:00"
+            "time": "2019-12-20T13:40:23+00:00"
         },
         {
             "name": "phpdocumentor/type-resolver",
@@ -6307,16 +6307,16 @@
         },
         {
             "name": "phpspec/prophecy",
-            "version": "1.10.0",
+            "version": "1.10.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpspec/prophecy.git",
-                "reference": "d638ebbb58daba25a6a0dc7969e1358a0e3c6682"
+                "reference": "cbe1df668b3fe136bcc909126a0f529a78d4cbbc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpspec/prophecy/zipball/d638ebbb58daba25a6a0dc7969e1358a0e3c6682",
-                "reference": "d638ebbb58daba25a6a0dc7969e1358a0e3c6682",
+                "url": "https://api.github.com/repos/phpspec/prophecy/zipball/cbe1df668b3fe136bcc909126a0f529a78d4cbbc",
+                "reference": "cbe1df668b3fe136bcc909126a0f529a78d4cbbc",
                 "shasum": ""
             },
             "require": {
@@ -6366,7 +6366,7 @@
                 "spy",
                 "stub"
             ],
-            "time": "2019-12-17T16:54:23+00:00"
+            "time": "2019-12-22T21:05:45+00:00"
         },
         {
             "name": "phpstan/extension-installer",
@@ -6454,16 +6454,16 @@
         },
         {
             "name": "phpstan/phpstan-doctrine",
-            "version": "0.12.5",
+            "version": "0.12.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan-doctrine.git",
-                "reference": "24ce35192c74097454b3dfb6364406f48c69cec1"
+                "reference": "c1bf25ed5d90f7ee83bcead0ca84c28b0f9fe259"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan-doctrine/zipball/24ce35192c74097454b3dfb6364406f48c69cec1",
-                "reference": "24ce35192c74097454b3dfb6364406f48c69cec1",
+                "url": "https://api.github.com/repos/phpstan/phpstan-doctrine/zipball/c1bf25ed5d90f7ee83bcead0ca84c28b0f9fe259",
+                "reference": "c1bf25ed5d90f7ee83bcead0ca84c28b0f9fe259",
                 "shasum": ""
             },
             "require": {
@@ -6484,6 +6484,7 @@
                 "doctrine/common": "^2.7",
                 "doctrine/mongodb-odm": "^1.2",
                 "doctrine/orm": "^2.5",
+                "ergebnis/composer-normalize": "^2.0.2",
                 "jakub-onderka/php-parallel-lint": "^1.0",
                 "phing/phing": "^2.16.0",
                 "phpstan/phpstan-phpunit": "^0.12",
@@ -6514,7 +6515,7 @@
                 "MIT"
             ],
             "description": "Doctrine extensions for PHPStan",
-            "time": "2019-12-18T15:58:52+00:00"
+            "time": "2019-12-21T18:55:30+00:00"
         },
         {
             "name": "sebastian/comparator",
@@ -7619,9 +7620,10 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": "^7.1.3",
+        "php": "^7.4",
         "ext-ctype": "*",
-        "ext-iconv": "*"
+        "ext-iconv": "*",
+        "ext-ds": "*"
     },
     "platform-dev": []
 }

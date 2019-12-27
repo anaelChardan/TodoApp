@@ -8,7 +8,7 @@
  */
 declare(strict_types=1);
 
-namespace Todo\Todo\Infrastructure\UserInterface\Http;
+namespace Todo\Todo\Infrastructure\UserInterface\Http\TodoList\Write;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\JsonResponse;
