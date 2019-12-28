@@ -170,7 +170,7 @@ We have two buses used (stored in `ShareSpace/Tool/MessageBus`):
 
 - default: common for all other environments
 - in_memory: no infrastructure dependencies (use only fakes)
-- test_database: only for testing database
+- test_database: only for testing database / API / Front tests
 - dev: like in_memory now
 - prod: use the infrastructure, does not work for now
 
@@ -212,7 +212,7 @@ make todo-back-run-spec F="your/folder"
 
 - [Behat](https://behat.org/en/latest/guides.html) is a story BDD framework, it is well designed for describing features
   - We use Behat for acceptance testing (meaning no Infrastructure dependencies) (tagged `@acceptance`)
-  - We use Behat for end-to-end testing (meaning with Infrastructure dependencies) (tagged `@end-to-end`)
+  - We use Behat along with [Panther](https://github.com/symfony/panther) for end-to-end testing (meaning with Infrastructure dependencies) (tagged `@end-to-end`)
     - The use of Infrastructure has a significant time cost, only critical use cases may be tagged
   - It's harder to do TDD with it as it does not embed a generator
   - Behat uses feature files which are located next to `back` folder.
@@ -225,12 +225,23 @@ make todo-back-acceptance
 # Run specific acceptance tests of a bounded context
 make todo-back-acceptance F="your/folder"
 
-# Run all the end-to-end tests of a bounded context
-make todo-back-end-to-end
+# Run all the end-to-end-api tests of a bounded context
+make todo-back-end-to-end-api
 
-# Run specific end-to-end tests of a bounded context
-make todo-back-end-to-end F="your/folder"
+# Run specific end-to-end-api tests of a bounded context
+make todo-back-end-to-end-api F="your/folder"
+
+# Run all the end-to-end-front tests of a bounded context
+make todo-back-end-to-end-front-api
+
+# Run specific end-to-end-front tests of a bounded context
+make todo-back-end-to-end-api-front F="your/folder"
 ```
+
+##### Want to see your End To End tests running?
+
+We are using [Panther](https://github.com/symfony/panther) with Selenium Chrome Debug (for development purpose only)
+Just download a VNC Viewer and connect to the shared port of Selenium (default 5910).
 
 #### Rules
 

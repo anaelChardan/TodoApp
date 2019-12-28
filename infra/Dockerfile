@@ -58,7 +58,7 @@ RUN apt-get update && \
     apt-get --yes install ca-certificates && \
     apt-get --yes install unzip && \
     apt-get --yes install curl && \
-    apt-get --yes install php7.4-xdebug && \
+    apt-get --yes install php7.4-xdebug php7.4-curl php7.4-zip && \
     phpdismod xdebug && \
     mkdir /etc/php/7.4/enable-xdebug && \
     ln -s /etc/php/7.4/mods-available/xdebug.ini /etc/php/7.4/enable-xdebug/xdebug.ini && \

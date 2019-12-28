@@ -111,6 +111,9 @@
     "doctrine/reflection": {
         "version": "v1.0.0"
     },
+    "facebook/webdriver": {
+        "version": "1.7.1"
+    },
     "felixfbecker/advanced-json-rpc": {
         "version": "v3.0.4"
     },
@@ -352,6 +355,12 @@
             "src/Kernel.php"
         ]
     },
+    "symfony/http-client": {
+        "version": "v4.4.2"
+    },
+    "symfony/http-client-contracts": {
+        "version": "v2.0.1"
+    },
     "symfony/http-foundation": {
         "version": "v4.4.1"
     },
@@ -381,6 +390,9 @@
     },
     "symfony/orm-pack": {
         "version": "v1.0.7"
+    },
+    "symfony/panther": {
+        "version": "v0.6.0"
     },
     "symfony/phpunit-bridge": {
         "version": "4.3",

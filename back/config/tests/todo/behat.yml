@@ -29,3 +29,21 @@ end_to_end_api_todo:
       kernel:
         class: 'Todo\ShareSpace\Application\Symfony\Kernel'
         environment: 'test_database'
+
+end_to_end_front_todo:
+  suites:
+    default:
+      paths:
+        - '%paths.base%/../../../../features/todo'
+      contexts:
+        - 'Todo\Tests\Todo\EndToEnd\Behat\DatabaseContext'
+        - 'Todo\Tests\Todo\EndToEnd\Behat\Front\BrowserContext'
+        - 'Todo\Tests\Todo\EndToEnd\Behat\Front\TodoContext'
+      filters:
+        tags: '@end-to-end-front&&~@skip'
+
+  extensions:
+    FriendsOfBehat\SymfonyExtension:
+      kernel:
+        class: 'Todo\ShareSpace\Application\Symfony\Kernel'
+        environment: 'test_database'

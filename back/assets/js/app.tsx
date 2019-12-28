@@ -39,9 +39,9 @@ const App = () => {
       <h1> My Beautiful Todo Lists! </h1>
 
       <form onSubmit={formik.handleSubmit}>
-        <label htmlFor="name">Todo List name : </label>
+        <label htmlFor="create-todo-list">Todo List name : </label>
         <input
-          id="name"
+          id="create-todo-list"
           name="name"
           type="text"
           onChange={formik.handleChange}

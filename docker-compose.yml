@@ -67,6 +67,17 @@ services:
     networks:
       - 'todo'
 
+  selenium:
+    image: 'selenium/standalone-chrome-debug'
+    environment:
+      VNC_NO_PASSWORD: '1'
+    volumes:
+      - './:/srv/todo:ro'
+    ports:
+      - '${DOCKER_PORT_HTTP:-5910}:5900'
+    networks:
+      - 'todo'
+
   db:
     image: 'postgres:12.1'
     ports:

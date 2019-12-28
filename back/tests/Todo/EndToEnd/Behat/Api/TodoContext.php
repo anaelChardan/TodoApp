@@ -13,7 +13,6 @@ namespace Todo\Tests\Todo\EndToEnd\Behat\Api;
 use Behat\Behat\Context\Context;
 use Symfony\Component\HttpFoundation\Response;
 use Todo\Tests\Behat\ApiTestHelper;
-use Todo\Tests\Behat\DatabasePurger;
 use Todo\Todo\Domain\TodoList\Write\Repository;
 use Webmozart\Assert\Assert;
 
@@ -21,23 +20,12 @@ final class TodoContext implements Context
 {
     private ApiTestHelper $apiTestHelper;
     private Repository $repository;
-    private DatabasePurger $databasePurger;
     private array $todoLists = [];
 
-    public function __construct(ApiTestHelper $apiTestHelper, Repository $repository, DatabasePurger $databasePurger)
+    public function __construct(ApiTestHelper $apiTestHelper, Repository $repository)
     {
         $this->apiTestHelper = $apiTestHelper;
         $this->repository = $repository;
-        $this->databasePurger = $databasePurger;
-    }
-
-    /**
-     * @AfterScenario
-     * @BeforeScenario
-     */
-    public function resetDatabase()
-    {
-        ($this->databasePurger)();
     }
 
     /**

@@ -45,20 +45,20 @@ const TodoList = ({name, identifier}: TodoListProps) => {
 
   useEffect(() => getDetails(identifier), []);
 
-  return <>
-      <h2>TodoList: {name} ({count})</h2>
+  return <div className="todo-list">
+    <h2>TodoList: <span className="todo-list-name">{name}</span> <span className="todo-list-count">({count})</span></h2>
 
       <form onSubmit={formik.handleSubmit}>
         <label htmlFor="name">Task Name : </label>
-        <input id="name" name="name" type="text" onChange={formik.handleChange} value={formik.values.name}/>
+        <input id="task-name" name="name" type="text" onChange={formik.handleChange} value={formik.values.name}/>
         <button type="submit">Add a task!</button>
       </form>
 
-      <ul>
+      <ul className="tasks-list">
         {tasks.map(e => <Task key={e.identifier} name={e.name} identifier={e.name}/>)}
       </ul>
 
-    </>
+    </div>
 };
 
 export default TodoList;

@@ -6,7 +6,7 @@ export type TaskDataProps = {
 }
 
 const Task = ({name, identifier}: TaskDataProps) => {
-  return <li>{name}</li>
+  return <li className="task">{name}</li>
 };
 
 export default Task;
