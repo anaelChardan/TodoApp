@@ -82,7 +82,7 @@ If a service needs to get the object behind the reference, it can use the associ
 
 ### Backend
 
-The back is in `back` folder and is build on top of PHP 7.3 using Symfony 4 and will follow a UseCase architecture.
+The back is in `application` folder and is build on top of PHP 7.7 using Symfony 4 and will follow a UseCase architecture.
 
 All commands you can do are located in the Makefile, take time to read it :).
 
@@ -243,7 +243,7 @@ make todo-back-end-to-end-api-front F="your/folder"
 We are using [Panther](https://github.com/symfony/panther) with Selenium Chrome Debug (for development purpose only)
 Just download a VNC Viewer and connect to the shared port of Selenium (default 5910).
 
-#### Rules
+##### Rules
 
 - No useless setters and getters, avoid anemic domain models. Make then smart, rich!
 - We should not be able to instantiate or mutates entities by making them invalid, throw as much exceptions as possible.
@@ -251,7 +251,7 @@ Just download a VNC Viewer and connect to the shared port of Selenium (default 5
 - Be immutable as much as possible
 - No autoincrement id, it should stay in 80's we have uuid now
 
-#### Libraries which help
+##### Libraries which help
 
 - [Safe](https://github.com/thecodingmachine/safe) for throwing exceptions on unsafe operations
 - [Ramsey/Uuid](https://github.com/ramsey/uuid) for having Uuid in PHP
@@ -259,18 +259,21 @@ Just download a VNC Viewer and connect to the shared port of Selenium (default 5
 - [php-ds](https://github.com/php-ds/polyfill) for the lack of Collections in PHP
 - [Webmozart/assert](https://github.com/webmozart/assert) for assertions on data
 
-#### WebStorm (all idea based IDE) setup
+##### WebStorm (all idea based IDE) setup
 
 You are of course free to use the ide you want, but here is the setup for all Jetbrains IDE
 
 - [Symfony Plugin](https://plugins.jetbrains.com/idea/plugin/7219-symfony-plugin)
 - [Configure Xdebug](./docs/xdebug.md)
 
-#### Blackfire
+##### Blackfire
 
 - [Configure Blackfire](./docs/blackfire.md)
 
-#### Troubleshooting
+##### Troubleshooting
 
 Error on composer install: the environment may not be working, try prefixing you command by APP_ENV=dev
 
+#### Front-End
+
+The front-end is built over React with Webpack-Encore

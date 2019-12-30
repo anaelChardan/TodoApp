@@ -13,7 +13,7 @@ services:
       BLACKFIRE_CLIENT_TOKEN: '${BLACKFIRE_CLIENT_TOKEN:-client_token}'
     volumes:
       - './.git:/srv/.git'
-      - './back:/srv/todo'
+      - './application:/srv/todo'
       - './features:/srv/features'
       - '${HOST_COMPOSER_HOME:-~/.composer}:/var/www/.composer'
     working_dir: '/srv/todo'
@@ -26,7 +26,7 @@ services:
     user: 'node'
     command: 'yarn watch'
     volumes:
-      - './back:/srv/todo'
+      - './application:/srv/todo'
       - './features:/srv/features'
       - '~/.cache/yarn:/home/node/.yarn-cache'
     working_dir: '/srv/todo'
@@ -46,7 +46,7 @@ services:
       BLACKFIRE_CLIENT_ID: '${BLACKFIRE_CLIENT_ID:-client_id}'
       BLACKFIRE_CLIENT_TOKEN: '${BLACKFIRE_CLIENT_TOKEN:-client_token}'
     volumes:
-      - './back:/srv/todo:rw'
+      - './application:/srv/todo:rw'
     working_dir: '/srv/todo'
     command: 'php-fpm -F'
     networks:
@@ -61,9 +61,9 @@ services:
     ports:
       - '${DOCKER_PORT_HTTP:-8002}:80'
     volumes:
-      - './back:/srv/todo:ro'
+      - './application:/srv/todo:ro'
       - './infra/httpd/httpd.conf:/usr/local/apache2/conf/httpd.conf:ro'
-      - './infra/httpd/back.conf:/usr/local/apache2/conf/vhost.conf:ro'
+      - './infra/httpd/application.conf:/usr/local/apache2/conf/vhost.conf:ro'
     networks:
       - 'todo'
 

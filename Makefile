@@ -1,6 +1,4 @@
 ROOT_DIR=$(shell pwd)
-BACK_DIR=$(ROOT_DIR)/back
-FRONT_DIR=$(ROOT_DIR)/front
 
 DOCKER_COMPOSE=docker-compose
 PHP_RUN=$(DOCKER_COMPOSE) run --rm -u www-data php php
@@ -44,38 +42,38 @@ composer-in_memory:
 	APP_ENV=in_memory $(PHP_RUN) /usr/local/bin/composer ${F}
 
 .PHONY: cache
-cache: back/vendor
-	rm -rf back/var/cache && $(PHP_RUN) bin/console cache:warmup
+cache: application/vendor
+	rm -rf application/var/cache && $(PHP_RUN) bin/console cache:warmup
 
-back/composer.lock: back/composer.json
+application/composer.lock: application/composer.json
 	$(PHP_RUN) /usr/local/bin/composer update
 
-back/vendor: back/composer.lock
+application/vendor: application/composer.lock
 	$(PHP_RUN) /usr/local/bin/composer install
 
-back/node_modules: back/package.json
+application/node_modules: application/package.json
 	$(YARN_EXEC) install
 
 .PHONY: app-dev
 app-dev:
-	APP_DEV=dev $(MAKE) back/vendor
+	APP_DEV=dev $(MAKE) application/vendor
 	APP_ENV=dev $(MAKE) up
 	APP_ENV=dev $(MAKE) cache
 
 .PHONY: app-prod
 app-prod:
-	APP_ENV=prod $(MAKE) back/vendor
+	APP_ENV=prod $(MAKE) application/vendor
 	APP_ENV=prod $(MAKE) up
 	APP_ENV=prod $(MAKE) cache
 
 .PHONY: app-in-memory
 app-in-memory:
-	APP_ENV=in_memory $(MAKE) back/vendor
+	APP_ENV=in_memory $(MAKE) application/vendor
 	APP_ENV=in_memory $(MAKE) up
 	APP_ENV=in_memory $(MAKE) cache
 
 .PHONY: install
-install: back/vendor
+install: application/vendor
 
 .PHONY: db-schema
 db-schema:
