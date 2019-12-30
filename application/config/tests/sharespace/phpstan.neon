@@ -1,0 +1,6 @@
+parameters:
+	excludes_analyse:
+		- ../../../src/ShareSpace/Application/Symfony/Container/SymfonyExtension.php
+		- ../../../src/ShareSpace/Application/Symfony/Kernel.php
+		- ../../../src/ShareSpace/Infrastructure/Http/Exception/FlattenException.php
+		- ../../../src/ShareSpace/Infrastructure/Storage/Type

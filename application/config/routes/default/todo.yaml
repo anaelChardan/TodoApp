@@ -1,0 +1,27 @@
+create_todo_list:
+  path: /todo-list
+  defaults:
+    _controller: Todo\Todo\Infrastructure\UserInterface\Http\TodoList\Write\CreateTodoList
+    _format: json
+  methods: POST
+
+get_all_todo_lists:
+  path: /todo-list
+  defaults:
+    _controller: Todo\Todo\Infrastructure\UserInterface\Http\TodoList\Read\GetAllTodoListsDetails
+    _format: json
+  methods: GET
+
+get_todo_list_details:
+  path: /todo-list/{identifier}
+  defaults:
+    _controller: Todo\Todo\Infrastructure\UserInterface\Http\TodoList\Read\GetTodoListDetails
+    _format: json
+  methods: GET
+
+add_task_to_todo_list:
+  path: /todo-list/{identifier}/task
+  defaults:
+    _controller: Todo\Todo\Infrastructure\UserInterface\Http\TodoList\Write\AddTaskForTodoList
+    _format: json
+  methods: POST

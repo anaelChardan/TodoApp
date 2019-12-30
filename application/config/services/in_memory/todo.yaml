@@ -1,0 +1,15 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+
+  Todo\Todo\Domain\TodoList\Write\Repository:
+    class: 'Todo\Todo\Infrastructure\Storage\InMemory\InMemoryRepository'
+
+  Todo\Todo\Domain\TodoList\Read\GetTodoListDetails:
+    class: 'Todo\Todo\Infrastructure\Storage\InMemory\InMemoryGetTodoListDetails'
+
+  Todo\Todo\Domain\TodoList\Read\GetTodoListsDetails:
+    class: 'Todo\Todo\Infrastructure\Storage\InMemory\InMemoryGetTodoListsDetails'
+
+  Todo\Todo\Infrastructure\Storage\InMemory\Store: ~

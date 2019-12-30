@@ -1,0 +1,49 @@
+acceptance_todo:
+  suites:
+    default:
+      paths:
+        - '%paths.base%/../../../../features/todo'
+      contexts:
+        - 'Todo\Tests\Todo\Acceptance\Behat\TodoContext'
+      filters:
+        tags: '@acceptance&&~@skip'
+
+  extensions:
+    FriendsOfBehat\SymfonyExtension:
+      kernel:
+        class: 'Todo\ShareSpace\Application\Symfony\Kernel'
+        environment: 'in_memory'
+
+end_to_end_api_todo:
+  suites:
+    default:
+      paths:
+        - '%paths.base%/../../../../features/todo'
+      contexts:
+        - 'Todo\Tests\Todo\EndToEnd\Behat\Api\TodoContext'
+      filters:
+        tags: '@end-to-end-api&&~@skip'
+
+  extensions:
+    FriendsOfBehat\SymfonyExtension:
+      kernel:
+        class: 'Todo\ShareSpace\Application\Symfony\Kernel'
+        environment: 'test_database'
+
+end_to_end_front_todo:
+  suites:
+    default:
+      paths:
+        - '%paths.base%/../../../../features/todo'
+      contexts:
+        - 'Todo\Tests\Todo\EndToEnd\Behat\DatabaseContext'
+        - 'Todo\Tests\Todo\EndToEnd\Behat\Front\BrowserContext'
+        - 'Todo\Tests\Todo\EndToEnd\Behat\Front\TodoContext'
+      filters:
+        tags: '@end-to-end-front&&~@skip'
+
+  extensions:
+    FriendsOfBehat\SymfonyExtension:
+      kernel:
+        class: 'Todo\ShareSpace\Application\Symfony\Kernel'
+        environment: 'test_database'

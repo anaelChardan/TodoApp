@@ -1,0 +1,28 @@
+# This file is the entry point to configure your own services.
+# Files in the packages/ subdirectory configure your dependencies.
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+parameters:
+
+services:
+    # default configuration for services in *this* file
+    _defaults:
+        autowire: true      # Automatically injects dependencies in your services.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+
+    Todo\ShareSpace\Tool\MessageBus\CommandBus: ~
+    Todo\ShareSpace\Tool\MessageBus\Command\IdentifierMiddleware: ~
+
+    Todo\ShareSpace\Tool\MessageBus\QueryBus: ~
+    Todo\ShareSpace\Tool\MessageBus\EventBus: ~
+    Todo\ShareSpace\Infrastructure\Http\ParamConverter\CommandContentConverter: ~
+    Todo\ShareSpace\Infrastructure\Http\Exception\RenderExceptionController: ~
+    Todo\ShareSpace\Infrastructure\Http\Exception\MessengerValidationExceptionListener:
+        arguments:
+            - 'Todo\ShareSpace\Infrastructure\Http\Exception\RenderExceptionController::renderAction'
+
+    controllers:
+        namespace: Todo\ShareSpace\Infrastructure\Http\Controller\
+        resource: '%kernel.project_dir%/src/ShareSpace/Infrastructure/Http/Controller/*'
+        public: true

@@ -1,0 +1,6 @@
+home:
+  path: /
+  defaults:
+    _controller: Todo\ShareSpace\Infrastructure\Http\Controller\Home
+    _format: html
+  methods: GET

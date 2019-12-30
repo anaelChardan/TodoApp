@@ -22,15 +22,19 @@ RUN echo 'APT::Install-Recommends "0" ; APT::Install-Suggests "0" ;' > /etc/apt/
     echo "deb https://packages.sury.org/php/ buster main" | tee /etc/apt/sources.list.d/php.list && \
     apt-get update  && \
     apt-get --yes install ca-certificates \
+        build-essential \
+        php-pear \
+        php-dev \
         php7.4-fpm \
         php7.4-cli \
         php7.4-intl \
         php7.4-opcache \
-        php7.4-mysql \
+        php7.4-pgsql \
         php7.4-xml \
         php7.4-mbstring \
         php7.4-bcmath \
         php7.4-apcu && \
+    pecl install ds && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
     ln -s /usr/sbin/php-fpm7.4 /usr/local/sbin/php-fpm && \
@@ -54,7 +58,7 @@ RUN apt-get update && \
     apt-get --yes install ca-certificates && \
     apt-get --yes install unzip && \
     apt-get --yes install curl && \
-    apt-get --yes install php7.4-xdebug && \
+    apt-get --yes install php7.4-xdebug php7.4-curl php7.4-zip && \
     phpdismod xdebug && \
     mkdir /etc/php/7.4/enable-xdebug && \
     ln -s /etc/php/7.4/mods-available/xdebug.ini /etc/php/7.4/enable-xdebug/xdebug.ini && \

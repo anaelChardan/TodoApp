@@ -1,0 +1,15 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+
+  context:
+    namespace: Todo\Tests\Todo\EndToEnd\Behat\
+    resource: '%kernel.project_dir%/tests/Todo/EndToEnd/Behat/**/*.php'
+
+  Todo\Tests\Behat\ApiTestHelper: ~
+  Todo\Tests\Behat\BrowserHelper:
+    arguments:
+      $seleniumHost: 'http://selenium:4444/wd/hub'
+      $baseUri: 'http://httpd-back'
+  Todo\Tests\Behat\DatabasePurger: ~

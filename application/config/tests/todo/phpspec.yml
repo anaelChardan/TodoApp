@@ -1,0 +1,7 @@
+suites:
+  todo:
+    namespace: Todo\Todo
+    psr4_prefix: Todo\Todo
+    spec_path: tests/Todo
+    src_path: src/Todo
+    spec_prefix: Specification

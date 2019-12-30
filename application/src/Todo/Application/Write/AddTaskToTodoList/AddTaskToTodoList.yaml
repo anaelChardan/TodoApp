@@ -1,0 +1,8 @@
+Todo\Todo\Application\Write\AddTaskToTodoList\AddTaskToTodoList:
+  properties:
+    todoListIdentifier:
+      - Uuid: ~
+    identifier:
+      - Uuid: ~
+    name:
+      - NotBlank: ~

@@ -1,0 +1,10 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+
+  Todo\Tests\ShareSpace\Behat\:
+    resource: '../../../tests/ShareSpace/Behat'
+
+  Todo\Tests\Todo\Acceptance\Behat\:
+    resource: '../../../tests/Todo/Acceptance/Behat'

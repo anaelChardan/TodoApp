@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                          https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="Todo\Todo\Domain\TodoList\Write\Task\Task" table="task">
+        <id name="identifier" type="task_identifier" column="identifier">
+            <generator strategy="NONE"/>
+        </id>
+
+        <field name="name" column="name" type="task_name" />
+        <many-to-one
+                field="todoList"
+                target-entity="Todo\Todo\Domain\TodoList\Write\TodoList"
+                inversed-by="tasks"
+        >
+            <join-column name="todo_list_identifier" referenced-column-name="identifier" nullable="false"/>
+        </many-to-one>
+    </entity>
+</doctrine-mapping>

@@ -1,10 +1,9 @@
 ROOT_DIR=$(shell pwd)
-BACK_DIR=$(ROOT_DIR)/back
-FRONT_DIR=$(ROOT_DIR)/front
 
 DOCKER_COMPOSE=docker-compose
 PHP_RUN=$(DOCKER_COMPOSE) run --rm -u www-data php php
 PHP_EXEC=$(DOCKER_COMPOSE) exec fpm php
+YARN_EXEC=$(DOCKER_COMPOSE) run --rm -u node node yarn
 
 CI ?= false
 
@@ -38,34 +37,50 @@ sf:
 composer-dev:
 	APP_ENV=dev $(PHP_RUN) /usr/local/bin/composer ${F}
 
-.PHONY: cache
-cache: back/vendor
-	rm -rf back/var/cache && $(PHP_RUN) bin/console cache:warmup
+.PHONY: composer-in_memory
+composer-in_memory:
+	APP_ENV=in_memory $(PHP_RUN) /usr/local/bin/composer ${F}
 
-back/composer.lock: back/composer.json
+.PHONY: cache
+cache: application/vendor
+	rm -rf application/var/cache && $(PHP_RUN) bin/console cache:warmup
+
+application/composer.lock: application/composer.json
 	$(PHP_RUN) /usr/local/bin/composer update
 
-back/vendor: back/composer.lock
+application/vendor: application/composer.lock
 	$(PHP_RUN) /usr/local/bin/composer install
+
+application/node_modules: application/package.json
+	$(YARN_EXEC) install
 
 .PHONY: app-dev
 app-dev:
-	APP_DEV=dev $(MAKE) back/vendor
+	APP_DEV=dev $(MAKE) application/vendor
 	APP_ENV=dev $(MAKE) up
 	APP_ENV=dev $(MAKE) cache
 
 .PHONY: app-prod
 app-prod:
-	APP_ENV=prod $(MAKE) back/vendor
+	APP_ENV=prod $(MAKE) application/vendor
 	APP_ENV=prod $(MAKE) up
 	APP_ENV=prod $(MAKE) cache
 
-.PHONY: install
-install: back/vendor
+.PHONY: app-in-memory
+app-in-memory:
+	APP_ENV=in_memory $(MAKE) application/vendor
+	APP_ENV=in_memory $(MAKE) up
+	APP_ENV=in_memory $(MAKE) cache
 
-.PHONY: start-back
-start-back:
-	$(PHP_ONE_LINE) bin/console server:run 0.0.0.0:8000
+.PHONY: install
+install: application/vendor
+
+.PHONY: db-schema
+db-schema:
+	$(PHP_RUN) bin/console d:s:u --dump-sql
+	$(PHP_RUN) bin/console d:s:u --force
+
+### TODO
 
 .PHONY: todo-php-cs-fixer
 todo-php-cs-fixer:
@@ -90,16 +105,24 @@ todo-back-run-spec:
 todo-back-desc-spec:
 	$(PHP_RUN) vendor/bin/phpspec desc -c config/tests/todo/phpspec.yml ${F}
 
+.PHONY: todo-back-integration
+todo-back-integration:
+	$(PHP_RUN) bin/phpunit -c config/tests/todo/phpunit.xml.dist
+
 .PHONY: todo-back-acceptance
 todo-back-acceptance:
-	$(PHP_RUN) vendor/bin/behat -p default -s acceptance_todo -c config/tests/todo/behat.yml ${F}
+	$(PHP_RUN) vendor/bin/behat -p acceptance_todo -c config/tests/todo/behat.yml ${F}
 
-.PHONY: todo-back-end-to-end
-todo-back-end-to-end:
-	$(PHP_RUN) vendor/bin/behat -p default -s end_to_end_todo -c config/tests/todo/behat.yml ${F}
+.PHONY: todo-back-end-to-end-api
+todo-back-end-to-end-api:
+	$(PHP_RUN) vendor/bin/behat -p end_to_end_api_todo -c config/tests/todo/behat.yml ${F}
+
+.PHONY: todo-back-end-to-end-front
+todo-back-end-to-end-front:
+	$(PHP_RUN) vendor/bin/behat -p end_to_end_front_todo -c config/tests/todo/behat.yml ${F}
 
 .PHONY: todo-back
-todo-back: todo-back-static todo-back-run-spec todo-back-acceptance
+todo-back: todo-back-static todo-back-run-spec todo-back-acceptance todo-back-end-to-end-api todo-back-end-to-end-front todo-back-integration
 
 .PHONY: todo
 todo: todo-back
@@ -123,12 +146,16 @@ sharespace-back-static: sharespace-php-cs-fixer sharespace-phpstan sharespace-ps
 sharespace-back-run-spec:
 	$(PHP_RUN) vendor/bin/phpspec run -c config/tests/sharespace/phpspec.yml ${F}
 
+.PHONY: sharespace-back-integration
+sharespace-back-integration:
+	$(PHP_RUN) bin/phpunit -c config/tests/sharespace/phpunit.xml.dist
+
 .PHONY: sharespace-back-acceptance
 sharespace-back-acceptance:
 	$(PHP_RUN) vendor/bin/behat -p default -s test_demo -c config/tests/sharespace/behat.yml ${F}
 
 .PHONY: sharespace-back
-sharespace-back: sharespace-php-cs-fixer sharespace-phpstan sharespace-psalm sharespace-back-run-spec sharespace-back-acceptance
+sharespace-back: sharespace-php-cs-fixer sharespace-phpstan sharespace-psalm sharespace-back-run-spec sharespace-back-acceptance sharespace-back-integration
 
 .PHONY: sharespace
 sharespace: sharespace-back
@@ -149,11 +176,14 @@ back-static: php-cs-fixer phpstan psalm
 .PHONY: back-spec
 back-spec: todo-back-run-spec sharespace-back-run-spec
 
+.PHONY: back-integration
+back-integration: todo-back-integration sharespace-back-integration
+
 .PHONY: back-acceptance
 back-acceptance: todo-back-acceptance sharespace-back-acceptance
 
 .PHONY: back-end-to-end
-back-end-to-end: todo-back-end-to-end
+back-end-to-end: todo-back-end-to-end-api todo-back-end-to-end-front
 
 .PHONY: back-test
 back-test: back-static back-spec back-acceptance back-end-to-end

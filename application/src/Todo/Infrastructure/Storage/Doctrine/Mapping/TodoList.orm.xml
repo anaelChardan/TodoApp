@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                          https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="Todo\Todo\Domain\TodoList\Write\TodoList" table="todo_list">
+        <id name="identifier" type="todo_list_identifier" column="identifier">
+            <generator strategy="NONE"/>
+        </id>
+
+        <field name="name" column="name" type="todo_list_name" />
+
+        <one-to-many
+                field="tasks"
+                target-entity="Todo\Todo\Domain\TodoList\Write\Task\Task"
+                mapped-by="todoList"
+                orphan-removal="true"
+        >
+            <cascade>
+                <cascade-persist />
+                <cascade-remove />
+            </cascade>
+        </one-to-many>
+
+    </entity>
+</doctrine-mapping>
