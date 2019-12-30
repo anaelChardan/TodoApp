@@ -82,13 +82,12 @@ If a service needs to get the object behind the reference, it can use the associ
 
 ### Backend
 
-The back is in `application` folder and is build on top of PHP 7.7 using Symfony 4 and will follow a UseCase architecture.
+The back is in `application` folder and is build on top of PHP 7.4 using Symfony 4 and will follow a UseCase architecture.
 
 All commands you can do are located in the Makefile, take time to read it :).
 
 #### Dependencies
 
-- For now, no database, we can work without.
 - For now, no cache, it is clearly pre-matured.
 - For now, no asynchronous (e.g RabbitMQ).
 
