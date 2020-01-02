@@ -63,7 +63,7 @@ services:
     volumes:
       - './application:/srv/todo:ro'
       - './infra/httpd/httpd.conf:/usr/local/apache2/conf/httpd.conf:ro'
-      - './infra/httpd/application.conf:/usr/local/apache2/conf/vhost.conf:ro'
+      - './infra/httpd/back.conf:/usr/local/apache2/conf/vhost.conf:ro'
     networks:
       - 'todo'
 
