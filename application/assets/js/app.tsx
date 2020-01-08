@@ -5,11 +5,20 @@ require('../css/app.css');
 import React, {useEffect, useState} from 'react';
 import ReactDom from 'react-dom';
 import {useFormik} from "formik";
-import {fetchResult, postJson} from "./fetch/fetch-result";
+import {fetchResult, getJson, postJson} from "./fetch/fetch-result";
 import {isOk} from "./fetch/result";
 
 const App = () => {
   const [todoLists, setTodoLists] = useState([]);
+
+  const getTodoList = () => {
+    fetchResult<TodoListProps[], never>('/todo-list').then(result => {
+      if (isOk(result)) {
+        if (result)
+          setTodoLists(result.value);
+      }
+    });
+  };
 
   const formik = useFormik({
     initialValues: {
@@ -26,12 +35,12 @@ const App = () => {
   });
 
   useEffect(() => {
-    fetchResult<TodoListProps[], never>('/todo-list').then(result => {
-      if (isOk(result)) {
-        if (result)
-        setTodoLists(result.value);
-      }
-    })
+    getTodoList();
+
+    const eventSource = new EventSource('http://localhost:8050/.well-known/mercure?topic=' + encodeURIComponent(`http://test.com/todo-list`));
+    eventSource.onmessage = event => {
+      getTodoList();
+    };
   }, []);
 
   return (

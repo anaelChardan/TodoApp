@@ -29,6 +29,7 @@ const TodoList = ({name, identifier}: TodoListProps) => {
     });
   };
 
+
   const formik = useFormik({
     initialValues: {
       name: ''
@@ -43,7 +44,14 @@ const TodoList = ({name, identifier}: TodoListProps) => {
     }
   });
 
-  useEffect(() => getDetails(identifier), []);
+  useEffect(() => {
+    getDetails(identifier);
+
+    const eventSource = new EventSource('http://localhost:8050/.well-known/mercure?topic=' + encodeURIComponent(`http://test.com/todo-list/${identifier}`));
+    eventSource.onmessage = event => {
+      getDetails(identifier);
+    };
+  }, []);
 
   return <div className="todo-list">
     <h2>TodoList: <span className="todo-list-name">{name}</span> <span className="todo-list-count">({count})</span></h2>

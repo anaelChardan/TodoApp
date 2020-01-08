@@ -16,6 +16,10 @@ services:
 
     Todo\ShareSpace\Tool\MessageBus\QueryBus: ~
     Todo\ShareSpace\Tool\MessageBus\EventBus: ~
+
+    Todo\ShareSpace\Tool\Mercure\JwtProvider:
+        arguments: ['%env(MERCURE_JWT_TOKEN)%']
+
     Todo\ShareSpace\Infrastructure\Http\ParamConverter\CommandContentConverter: ~
     Todo\ShareSpace\Infrastructure\Http\Exception\RenderExceptionController: ~
     Todo\ShareSpace\Infrastructure\Http\Exception\MessengerValidationExceptionListener:

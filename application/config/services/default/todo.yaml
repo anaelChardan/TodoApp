@@ -25,6 +25,13 @@ services:
     tags:
       - { name: messenger.message_handler, bus: query.bus }
 
+  event_handlers_sse:
+    namespace: Todo\Todo\Infrastructure\UserInterface\Mercure\
+    resource: '%kernel.project_dir%/src/Todo/Infrastructure/UserInterface/Mercure/**/*.php'
+    autoconfigure: false
+    tags:
+      - { name: messenger.message_handler, bus: event.bus }
+
   validators:
     namespace: Todo\
     resource: '%kernel.project_dir%/src/**/*Validator.php'

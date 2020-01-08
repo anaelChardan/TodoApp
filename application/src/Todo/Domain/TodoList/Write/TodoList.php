@@ -11,12 +11,18 @@ namespace Todo\Todo\Domain\TodoList\Write;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Todo\ShareSpace\Application\DomainDrivenDesign\Entity\DomainEventsProducer;
+use Todo\ShareSpace\Application\DomainDrivenDesign\Entity\DomainEventsRecorderCapabilities;
+use Todo\Todo\Domain\TodoList\Write\Event\TaskAdded;
+use Todo\Todo\Domain\TodoList\Write\Event\TodoListCreated;
 
 /**
  * @psalm-suppress TooManyTemplateParams
  */
-class TodoList
+class TodoList implements DomainEventsProducer
 {
+    use DomainEventsRecorderCapabilities;
+
     private Identifier $identifier;
     private Name $name;
 
@@ -31,6 +37,7 @@ class TodoList
         $this->identifier = $identifier;
         $this->name = $name;
         $this->tasks = new ArrayCollection();
+        $this->record(new TodoListCreated((string) $this->identifier));
     }
 
     public function identifier(): Identifier
@@ -47,6 +54,8 @@ class TodoList
     {
         $task->ofTodoList($this);
         $this->tasks->set((string) $task->identifier(), $task);
+
+        $this->record(new TaskAdded((string) $this->identifier, (string) $task->identifier()));
     }
 
     /**
