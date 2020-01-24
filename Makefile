@@ -57,6 +57,7 @@ application/node_modules: application/package.json
 .PHONY: app-dev
 app-dev:
 	APP_DEV=dev $(MAKE) application/vendor
+	APP_DEV=dev $(MAKE) application/node_modules
 	APP_ENV=dev $(MAKE) up
 	APP_ENV=dev $(MAKE) cache
 
@@ -73,7 +74,7 @@ app-in-memory:
 	APP_ENV=in_memory $(MAKE) cache
 
 .PHONY: install
-install: application/vendor
+install: application/vendor application/node_modules
 
 .PHONY: db-schema
 db-schema:

@@ -66,10 +66,18 @@ final class TodoContext implements Context
      */
     public function shouldHaveTask(string $todoListName, int $numberOfTasks)
     {
-        $todoList = $this->findTodoListNamed($todoListName);
-        $text = $todoList->findElement(WebDriverBy::className('todo-list-count'))->getText();
+        $this->browserHelper->client()->wait(10)->until(function () use ($todoListName, $numberOfTasks) {
+            $todoList = $this->findTodoListNamed($todoListName);
 
-        Assert::eq($text, '('.$numberOfTasks.')');
+            $text = $todoList->findElement(WebDriverBy::className('todo-list-count'))->getText();
+
+            try {
+                Assert::eq($text, '(' . $numberOfTasks . ')');
+                return true;
+            } catch (\Exception $exception) {
+                return false;
+            }
+        });
     }
 
     /**
